@@ -82,7 +82,7 @@ const routers = [
         redirect: '/detail/video',
         children: [
             {
-                path: '/video',
+                path: 'video',
                 component: () => import('../view/detail/video.vue'),
                 meta: {
                     title: '详情页',
