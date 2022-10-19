@@ -24,12 +24,16 @@
             class="w-50 m-2"
             size="large"
             :prefix-icon="Search"
-            style="width: 270px; height: 40px"
+            style="width: 250px; height: 40px"
           />
         </el-form-item>
         <el-form-item style="margin: 0"
           ><el-button
-            style="height: 40px; margin-left: 10px; margin-right: 30px"
+            style="
+              height: 40px;
+              margin-left: 10px;
+              margin-right: 10px;
+            "
             color="#f5f7f9"
             >搜索</el-button
           ></el-form-item
