@@ -61,7 +61,50 @@ const routers = [
     {
         path: '/train',
         name: 'Train',
-        component: () => import('../view/train/index.vue')
+        component: () => import('../view/train/index.vue'),
+        redirect: '/train/myroom',
+        children: [
+            {
+                path: '/train',
+                name: 'MyRoom',
+
+                meta: {
+                    title: '我的练习室'
+                }
+            },
+            {
+                path: '/train/myroom',
+                name: 'MyRoom',
+                component: () => import('../view/train/myroom/index.vue'),
+                meta: {
+                    title: '我的练习室'
+                }
+            },
+            {
+                path: 'cache',
+                name: 'Cache',
+                component: () => import('../view/train/cache/index.vue'),
+                meta: {
+                    title: '缓存'
+                }
+            },
+            {
+                path: 'collect',
+                name: 'Collect',
+                component: () => import('../view/train/collect/index.vue'),
+                meta: {
+                    title: '收藏'
+                }
+            },
+            {
+                path: 'history',
+                name: 'History',
+                component: () => import('../view/train/history/index.vue'),
+                meta: {
+                    title: '历史'
+                }
+            },
+        ]
     },
     //交流
     {

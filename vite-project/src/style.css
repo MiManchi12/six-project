@@ -1,26 +1,32 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
 }
-body{
+
+body {
     height: 100%;
     margin: 0;
     line-height: 1.15;
+    background-color: #f5f7f9;
 }
-a{
+
+a {
     text-decoration: none;
-    color:#111111;
+    color: #111111;
 }
-button{
+
+button {
     border: 0;
     background-color: #fff;
-    color:#111111;
-    
+    color: #111111;
+
 }
-li{
+
+li {
     list-style: none;
 }
-p{
+
+p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
