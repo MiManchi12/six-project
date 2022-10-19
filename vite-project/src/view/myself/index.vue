@@ -77,7 +77,9 @@
             </el-card>
           </el-col>
           <!-- 右侧 -->
-          <router-view></router-view>
+          
+            <router-view style="margin-top:20px"></router-view>
+          
         </el-row>
       </div>
     </div>
@@ -213,5 +215,6 @@
     /* height: 72px; */
     min-height: 700px;
   }
+  
   </style>
   

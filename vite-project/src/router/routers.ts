@@ -55,7 +55,47 @@ const routers = [
     {
         path: '/myself',
         name: 'Myself',
-        component: () => import('../view/myself/index.vue')
+        component: () => import('../view/myself/index.vue'),
+        redirect: '/center/dynamics',
+        children: [
+            {
+              name: 'Dynamics',
+              path: '/center/dynamics',
+              component: () => import('../view/myself/dynamics/index.vue'),
+            },
+            {
+              name: 'My_member',
+              path: '/center/my_member',
+              component: () => import('../view/myself/my_member/index.vue'),
+            },
+            {
+              name: 'Wallet',
+              path: '/center/wallet',
+              component: () => import('../view/myself/wallet/index.vue'),
+            },
+            {
+              name: 'Coupons',
+              path: '/center/coupons',
+              component: () => import('../view/myself/coupons/index.vue'),
+            },
+            {
+              name: 'Buyer',
+              path: '/center/buyer',
+              component: () => import('../view/myself/buyer/index.vue'),
+              children: [],
+            },
+            {
+              name: 'Seller',
+              path: '/center/seller',
+              component: () => import('../view/myself/seller/index.vue'),
+              children: [],
+            },
+            {
+              name: 'Edit_info',
+              path: '/center/edit_info',
+              component: () => import('../view/myself/edit_info/index.vue'),
+            },
+          ],
     },
     // 练习室
     {
