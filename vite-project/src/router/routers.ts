@@ -22,13 +22,6 @@ const routers = [
         component: () => import('../view/class/index.vue'),
         children:[
             {
-                path:'prefecture',
-                component: () => import('../view/class/prefecture/index.vue'),
-                meta:{
-                    title:'会员专区',
-                }
-            },
-            {
                 path:'video',
                 component: () => import('../view/class/video/index.vue'),
                 meta:{
