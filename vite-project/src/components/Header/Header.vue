@@ -10,11 +10,11 @@
             </a>
             <!-- 导航列表 -->
             <nav class="headerNav">
-                <router-link to="" class="headerNavItem"><span>资源</span></router-link>
-                <router-link to="" class="headerNavItem"><span>课程</span></router-link>
-                <router-link to="" class="headerNavItem"><span>练习室</span></router-link>
-                <router-link to="" class="headerNavItem"><span>交流</span></router-link>
-                <router-link to="" class="headerNavItem"><span>我的</span></router-link>
+                <router-link to="/home" class="headerNavItem"><span>资源</span></router-link>
+                <router-link to="/class" class="headerNavItem"><span>课程</span></router-link>
+                <router-link to="/train" class="headerNavItem"><span>练习室</span></router-link>
+                <router-link to="/exchange" class="headerNavItem"><span>交流</span></router-link>
+                <router-link to="/myself" class="headerNavItem"><span>我的</span></router-link>
             </nav>
             <!-- 右侧导航 -->
             <div class="headerRight">

@@ -1,4 +1,6 @@
 <template>
+    <!-- 头部组件 -->
+    <Header></Header>
     <!-- 课程下面的导航区 -->
     <div class="nav">
         <div class="navitem">
@@ -9,6 +11,9 @@
             <span>主题</span>
         </div>
     </div>
+    <h1>导航内容区</h1>
+    <!-- 底部组件 -->
+    <Footer></Footer>
 </template>
 
 <script setup lang="ts">
@@ -42,5 +47,11 @@
             border-bottom: 3px solid rgb(1, 1, 1);
         }
     }
+}
+h1{
+    width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+    border: 1px solid #333;
 }
 </style>

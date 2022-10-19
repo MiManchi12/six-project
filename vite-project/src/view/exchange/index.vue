@@ -1,6 +1,6 @@
 <template>
     <Header></Header>
-    <h1>练习室内容区</h1>
+    <h1>交流内容区</h1>
     <Footer></Footer>
 </template>
 

@@ -1,7 +1,7 @@
 const routers = [
     {
-        path:'/',
-        redirect:'/home'
+        path: '/',
+        redirect: '/home'
     },
     // 登录
     {
@@ -20,33 +20,33 @@ const routers = [
         path: '/class',
         name: 'Class',
         component: () => import('../view/class/index.vue'),
-        children:[
+        children: [
             {
-                path:'video',
+                path: 'video',
                 component: () => import('../view/class/video/index.vue'),
-                meta:{
-                    title:'视频课',
+                meta: {
+                    title: '视频课',
                 }
             },
             {
-                path:'live',
+                path: 'live',
                 component: () => import('../view/class/live/index.vue'),
-                meta:{
-                    title:'直播课',
+                meta: {
+                    title: '直播课',
                 }
             },
             {
-                path:'offline',
+                path: 'offline',
                 component: () => import('../view/class/offline/index.vue'),
-                meta:{
-                    title:'线下课',
+                meta: {
+                    title: '线下课',
                 }
             },
             {
-                path:'subject',
+                path: 'subject',
                 component: () => import('../view/class/subject/index.vue'),
-                meta:{
-                    title:'主题',
+                meta: {
+                    title: '主题',
                 }
             },
         ]
@@ -63,11 +63,23 @@ const routers = [
         name: 'Train',
         component: () => import('../view/train/index.vue')
     },
+    //交流
+    {
+        path: '/exchange',
+        name: 'Exchange',
+        component: () => import('../view/exchange/index.vue')
+    },
     // 首页
     {
         path: '/home',
         name: 'Home',
         component: () => import('../view/home/index.vue')
+    },
+    //404
+    {
+        path: '/404',
+        name: '404',
+        component: () => import('../view/error/404.vue'),
     },
 ]
 export default routers
