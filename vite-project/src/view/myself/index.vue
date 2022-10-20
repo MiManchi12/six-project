@@ -80,8 +80,7 @@
         </el-row>
       </div>
     </div>
-<<<<<<< HEAD
-  </div>
+
   <Footer></Footer>
 </template>
 
