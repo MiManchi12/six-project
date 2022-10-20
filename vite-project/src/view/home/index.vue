@@ -32,10 +32,10 @@
 				<el-dialog v-model="dialogVisible" title="选择我的兴趣技能" width="900px">
 					<el-input class="search" placeholder="搜索兴趣技能" :prefix-icon="Search"
 						 clearable />
-					<el-button @click="search" class="search-btn" type="primary" :disabled="searchInput ? false : true">
+					<el-button class="search-btn" type="primary">
 						搜索</el-button>
 					<el-form label-position="left" label-width="auto" class="mt-60">
-						<el-tag :key="tag" class="tag" closable :disable-transitions="false">
+						<el-tag class="tag" closable :disable-transitions="false">
 							某某舞
 						</el-tag>
 					</el-form>
