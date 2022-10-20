@@ -22,7 +22,14 @@ const routers = [
         component: () => import('../view/class/index.vue'),
         children: [
             {
-                path: 'video',
+                path:'prefecture',
+                component: () => import('../view/class/prefecture/index.vue'),
+                meta:{
+                    title:'会员专区',
+                }
+            },
+            {
+                path:'video',
                 component: () => import('../view/class/video/index.vue'),
                 meta: {
                     title: '视频课',
@@ -157,11 +164,26 @@ const routers = [
         name: 'Home',
         component: () => import('../view/home/index.vue')
     },
+    // 详情页
+    {
+        path: '/detail',
+        redirect: '/detail/video',
+        children: [
+            {
+                path: 'video',
+                component: () => import('../view/detail/video.vue'),
+                meta: {
+                    title: '详情页',
+                }
+            }
+        ]
+    },
     //404
     {
         path: '/404',
         name: '404',
         component: () => import('../view/error/404.vue'),
     },
+
 ]
 export default routers
