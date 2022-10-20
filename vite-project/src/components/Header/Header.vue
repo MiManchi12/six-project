@@ -10,11 +10,11 @@
             </a>
             <!-- 导航列表 -->
             <nav class="headerNav">
-                <router-link to="/home" class="headerNavItem"><span>资源</span></router-link>
-                <router-link to="/class" class="headerNavItem"><span>课程</span></router-link>
-                <router-link to="/train" class="headerNavItem"><span>练习室</span></router-link>
-                <router-link to="/exchange" class="headerNavItem"><span>交流</span></router-link>
-                <router-link to="/myself" class="headerNavItem"><span>我的</span></router-link>
+                <router-link to="/home" class="headerNavItem" active-class="active"><span>资源</span></router-link>
+                <router-link to="/class" class="headerNavItem" active-class="active"><span>课程</span></router-link>
+                <router-link to="/train" class="headerNavItem" active-class="active"><span>练习室</span></router-link>
+                <router-link to="/exchange" class="headerNavItem" active-class="active"><span>交流</span></router-link>
+                <router-link to="/myself" class="headerNavItem" active-class="active"><span>我的</span></router-link>
             </nav>
             <!-- 右侧导航 -->
             <div class="headerRight">
@@ -50,7 +50,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+const Route = useRoute()
 
 const router = useRouter()
 // 跳转登陆

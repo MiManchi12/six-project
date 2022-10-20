@@ -1,72 +1,46 @@
-import axios, { type AxiosResponse } from 'axios';
-import { ElMessage, ElMessageBox } from 'element-plus';
-import pinia from '@/stores/index';
-import { useUserInfoStore } from '../stores/userInfo';
-
-
-/* 定义response对象的data接口 */
-interface ResponseData<T> {
-	code: number;
-	data: T;
-	message: string;
-}
-
-// 配置新建一个 axios 实例
-const service = axios.create({
-	baseURL: '/apilogin',
-	timeout: 50000,
+import axios from 'axios'
+import 'nprogress/nprogress.css'
+import { v4 as uuidv4 } from "uuid"
+import store from '@/store'
+//进度条一些其他的配置：比如说小圆球有没有的设置
+nprogress.configure({ showSpinner: false });
+// axios基本配置
+let request = axios.create({
+	// 基础路径
+	baseURL: '/api',//所有请求路径当中携带/api
+	timeout: 5000,//代表超时的时间为5s
 });
-
-// 添加请求拦截器
-service.interceptors.request.use(
-	(config:any) => {
-		if(useUserInfoStore().token){
-			config.headers['token'] = useUserInfoStore().token;
-		}
-		return config;
+// 生成uuid并保存到本地避免每次请求每次新建
+function getUserTempId() {
+	let userTempId = localStorage.getItem('USERTEMPID_S2')
+	if (!userTempId) {
+		userTempId = uuidv4()
+		localStorage.setItem('USERTEMPID_S2', userTempId)
 	}
-);
-
-// 添加响应拦截器
-service.interceptors.response.use(
-	/* 约束一下response */
-	async (response: AxiosResponse<ResponseData<any>>) => {
-		// 对响应数据做点什么
-		const res = response.data;
-		if (res.code !== 20000 && res.code !== 200) { /* 成功数据的code值为20000/200 */
-			// 统一的错误提示
-			ElMessage({
-				message: (typeof res.data == 'string' && res.data) || res.message || 'Error',
-				type: 'error',
-				duration: 5 * 1000
-			})
-
-			// `token` 过期或者账号已在别处登录
-			if (response.status === 401) {
-				const storeUserInfo = useUserInfoStore(pinia)
-				await storeUserInfo.reset()
-				window.location.href = '/' // 去登录页
-				ElMessageBox.alert('你已被登出，请重新登录', '提示', {})
-					.then(() => { })
-					.catch(() => { })
-			}
-			return Promise.reject(service.interceptors.response);
-		} else {
-			return res.data; /* 返回成功响应数据中的data属性数据 */
-		}
-	},
-	(error) => {
-		// 对响应错误做点什么
-		if (error.message.indexOf('timeout') != -1) {
-			ElMessage.error('网络超时');
-		} else if (error.message == 'Network Error') {
-			ElMessage.error('网络连接错误');
-		} else {
-			if (error.response.data) ElMessage.error(error.response.statusText);
-			else ElMessage.error('接口路径找不到');
-		}
-		return Promise.reject(error);
+	return userTempId
+}
+// 请求拦截器,在请求头中携带
+request.interceptors.request.use((config) => {
+	// 请求拦截器拦截到请求进度条开始
+	nprogress.start();
+	config.headers['userTempId'] = getUserTempId()
+	let token = store.state.user.token
+	if (token) {
+		config.headers['token'] = token
 	}
-);
+	//配置对象
+	return config
+})
+// 响应拦截器
+request.interceptors.response.use((res) => {
+	// 响应拦截器拦截到响应进度条结束
+	nprogress.done();
+	return res.data
+}, (error) => {
 
-export default service;
+	// 处理失败的业务,终止promise链，返回一个pending promise对象
+	return new Promise(() => { })
+})
+
+export default request;
+
