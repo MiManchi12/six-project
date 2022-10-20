@@ -42,14 +42,21 @@
                     </el-dropdown>
                 </div>
                 <!-- 登陆按钮 -->
-                <button class="login">登录</button>
+                <button class="login" @click="toLogin">登录</button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+// 跳转登陆
+const toLogin = () => {
+    router.push('/login')
+}
 
 </script>
 

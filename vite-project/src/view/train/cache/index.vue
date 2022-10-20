@@ -1,4 +1,5 @@
 <template>
+    <!-- 缓存 -->
     <div class="right">
         <div class="left-h-nav">
             <span class="nav">资源</span>
@@ -53,15 +54,9 @@ const input2 = ref('')
                 border-bottom: 3px solid #f93684;
             }
         }
-
-        // .demo-tabs>.el-tabs__content {
-        //     padding: 28px 30px;
-        //     color: #111;
-        //     font-size: 14px;
-        //     font-weight: 600;
-        // }
     }
 
+    // 内容区
     .r-content {
         width: 1020px;
         height: 730px;

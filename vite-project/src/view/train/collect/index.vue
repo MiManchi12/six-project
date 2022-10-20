@@ -1,4 +1,5 @@
 <template>
+    <!-- 收藏 -->
     <div class="right">
         <div class="left-h-nav">
             <span class="nav">资源</span>
@@ -17,6 +18,7 @@
             </div>
             <div class="noMore">
                 <span>无更多内容</span>
+                <!-- 分割线 -->
                 <el-divider />
             </div>
 
@@ -27,17 +29,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
-
 const input2 = ref('')
 
 </script>
 
 <style scoped lang="less">
+// 右侧模块
 .right {
     width: 1020px;
     height: 836.19px;
     float: right;
 
+    // 导航栏
     .left-h-nav {
         width: 1020px;
         height: 72.09px;
@@ -57,6 +60,7 @@ const input2 = ref('')
         }
     }
 
+    // 内容区
     .r-content {
         width: 1020px;
         height: 730px;
