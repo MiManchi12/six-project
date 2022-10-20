@@ -1,35 +1,42 @@
-* {
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
 }
-
-body {
+body{
     height: 100%;
     margin: 0;
     line-height: 1.15;
-    background-color: #f5f7f9;
 }
-
-a {
+a{
     text-decoration: none;
-    color: #111111;
+    color:#111111;
 }
-
-button {
+button{
     border: 0;
     background-color: #fff;
-    color: #111111;
-
+    color:#111111;
+    
 }
-
-li {
+li{
     list-style: none;
 }
-
-p {
+p{
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+
+div {
+    display: block;
+}
+
+pre {
+    font-size: 16px;
+    font-family: PingFang SC, Lantinghei SC, Microsoft YaHei, HanHei SC, Helvetica Neue, Open Sans, Arial, Hiragino Sans GB, "\5FAE\8F6F\96C5\9ED1", STHeiti, WenQuanYi Micro Hei, SimSun, sans-serif;
+    display: block;
+    /* font-family: monospace; */
+    white-space: pre;
+    margin: 1em 0px;
 }
