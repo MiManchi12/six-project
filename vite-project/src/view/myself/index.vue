@@ -195,11 +195,11 @@ import {
   display: block;
   padding: 17px 21px;
 }
-::deep.el-menu-vertical-demo {
+/* ::deep.el-menu-vertical-demo {
   padding-left: 1px;
   border: 0;
   height: 52px;
-}
+} */
 
 /* 右侧代码 */
 .header-container {

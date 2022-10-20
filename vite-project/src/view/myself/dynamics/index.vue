@@ -29,11 +29,7 @@
         </el-form-item>
         <el-form-item style="margin: 0"
           ><el-button
-            style="
-              height: 40px;
-              margin-left: 10px;
-              margin-right: 10px;
-            "
+            style="height: 40px; margin-left: 10px; margin-right: 10px"
             color="#f5f7f9"
             >搜索</el-button
           ></el-form-item
