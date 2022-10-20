@@ -7,8 +7,8 @@
                 <div class="detailContainer">
                     <!-- 播放器窗口 -->
                     <div class="playContainer">
-                        <vue3VideoPlay width="1060px" height="595px"
-                            poster="https://rs.dance365.com/photo/8b216916-9c9d-471f-983a-b98a77c77c4b.jpg">
+                        <vue3VideoPlay width="1060px" height="595px" :src="options.src" :type="options.type" :poster="options.poster"
+                            :autoPlay="false">
                         </vue3VideoPlay>
                     </div>
                     <!-- 播放量评论收藏 -->
@@ -489,14 +489,19 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 let foldToggle = ref(false)
-
+const options = reactive({
+    src: "https://rs.dance365.com/video/be6a906567bc4eaf9a91a797062b6e19_rs_2ecda0ae248a493d877e7dc79f564deal9of.m3u8",
+    type:'m3u8',
+    poster: "https://rs.dance365.com/photo/8b216916-9c9d-471f-983a-b98a77c77c4b.jpg"
+})
 </script>
 
 <style lang="less" scoped>
-.header_and_content_wrapper{
+.header_and_content_wrapper {
     flex: 1 0 auto;
     padding-bottom: 60px;
 }
+
 .detailVideoContainer {
     background-color: #F5F7F9;
 }
