@@ -21,19 +21,16 @@
       >
         <el-form-item label="" style="margin: 0">
           <el-input
-            class="w-50 m-2"
+            class="w-50 m-2 el-input__inner"
             size="large"
             :prefix-icon="Search"
             style="width: 250px; height: 40px"
+            v-model="input"
           />
         </el-form-item>
         <el-form-item style="margin: 0"
           ><el-button
-            style="
-              height: 40px;
-              margin-left: 10px;
-              margin-right: 10px;
-            "
+            style="height: 40px; margin-left: 10px; margin-right: 10px"
             color="#f5f7f9"
             >搜索</el-button
           ></el-form-item
@@ -51,7 +48,10 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-table style="width: 100%">
+      <el-table
+        style="width: 100%; color: #fff"
+        :header-cell-style="{ background: '#f5f7f9', color: '#393939' }"
+      >
         <el-table-column
           prop="ne"
           label="内容"
@@ -85,7 +85,8 @@ import {
   Plus,
   UploadFilled,
 } from '@element-plus/icons-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+const input = ref('')
 </script>
 
 <style scoped>
