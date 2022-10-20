@@ -67,7 +67,6 @@ const routers = [
             {
                 path: '/train',
                 name: 'MyRoom',
-
                 meta: {
                     title: '我的练习室'
                 }

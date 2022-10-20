@@ -1,4 +1,5 @@
 <template>
+    <!-- 历史记录 -->
     <div class="right">
         <div class="left-h-nav">
             <span class="nav">历史记录</span>
@@ -70,6 +71,7 @@ const input2 = ref('')
         }
     }
 
+    // 内容区
     .r-content {
         width: 1020px;
         height: 730px;

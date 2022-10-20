@@ -1,5 +1,7 @@
 <template>
+    <!-- 头部 -->
     <Header></Header>
+    <!-- 内容 -->
     <div class="training">
         <div class="warp">
             <div class="left">
@@ -52,13 +54,16 @@
             </div>
         </div>
     </div>
+    <!-- 尾部 -->
     <Footer></Footer>
 </template>
   
 <script lang="ts" setup>
+// element-plus---ElMessageBox组件引入
 import { ElMessageBox } from 'element-plus'
 import Footer from '../../components/Footer/index.vue';
 import Header from '../../components/Header/Header.vue';
+// 音频库弹框事件
 const open = () => {
     ElMessageBox.alert('请打开中舞网APP，点击"练习室"-"音频库"中查看。', {
         confirmButtonText: '确定',
@@ -71,14 +76,14 @@ const open = () => {
 .training {
     width: 100%;
 
-    // min-height: 600px;
+    // 内容区
     .warp {
         width: 1200px;
         min-height: 1000px;
         margin: auto;
-        // background-color: aquamarine;
         margin-top: 20px;
 
+        // 左侧模块
         .left {
             width: 170px;
             height: 290.47px;
@@ -89,7 +94,6 @@ const open = () => {
 
             .item {
                 text-decoration: none;
-
             }
 
             .i-room {
