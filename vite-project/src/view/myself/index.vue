@@ -10,9 +10,19 @@
             :body-style="{ padding: '20px 0' }"
             class="base-info"
           >
-            <img class="avatar" src="./images/default.png" alt="" />
+            <img
+              class="avatar"
+              :src="
+                selfData
+                  ? 'https://rs.dance365.com/photo/1665407918106_rs_1666251573200'
+                  : './images/default.png'
+              "
+              alt=""
+            />
             <div class="name_container">
-              <p style="margin: 0">1563587_xnN4</p>
+              <p style="margin: 0">
+                {{ selfData.account ? selfData.account : '用户名' }}
+              </p>
               <div class="level_box">
                 <img src="./images/level_Lv.@3x.png" alt="" />
                 <img src="./images/level_num_1@3x.png" alt="" />
@@ -30,10 +40,13 @@
           <el-card
             shadow="never"
             :body-style="{ padding: '5px 0' }"
-            class="navigation-item-content"
+            class="navigation-block"
           >
-            <router-link to="/center/dynamics">资源动态</router-link>
-            <span class="active"></span>
+            <router-link to="/center/dynamics" class="navigation-item"
+              >资源动态</router-link
+            >
+
+            <div class="active"></div>
           </el-card>
           <el-card
             shadow="never"
@@ -53,27 +66,43 @@
               >我买的订单</router-link
             >
             <!-- <a class="navigation-item">我卖的</a> -->
-            <el-menu class="el-menu-vertical-demo">
+            <el-menu class="el-menu-vertical-demo" background-color="#fff">
               <el-sub-menu>
                 <template #title>
-                  <span>我卖的</span>
+                  <span class="navigation-item">我卖的</span>
                 </template>
-                <el-menu-item index="1-1">订单管理</el-menu-item>
-                <el-menu-item index="1-2">商品管理</el-menu-item>
-                <el-menu-item index="1-3">客户管理</el-menu-item>
-                <el-menu-item index="1-4">待收款</el-menu-item>
-                <el-menu-item index="1-5">优惠管理</el-menu-item>
-                <el-menu-item index="1-6">评价管理</el-menu-item>
-                <el-menu-item index="1-7">保证金</el-menu-item>
+                <el-menu-item index="1-1" class="navigation-item"
+                  >订单管理</el-menu-item
+                >
+                <el-menu-item index="1-2" class="navigation-item"
+                  >商品管理</el-menu-item
+                >
+                <el-menu-item index="1-3" class="navigation-item"
+                  >客户管理</el-menu-item
+                >
+                <el-menu-item index="1-4" class="navigation-item"
+                  >待收款</el-menu-item
+                >
+                <el-menu-item index="1-5" class="navigation-item"
+                  >优惠管理</el-menu-item
+                >
+                <el-menu-item index="1-6" class="navigation-item"
+                  >评价管理</el-menu-item
+                >
+                <el-menu-item index="1-7" class="navigation-item"
+                  >保证金</el-menu-item
+                >
               </el-sub-menu>
             </el-menu>
           </el-card>
           <el-card
             shadow="never"
             :body-style="{ padding: '5px 0' }"
-            class="navigation-item-content"
+            class="navigation-block"
           >
-            <router-link to="/center/edit_info">我的资料</router-link>
+            <router-link to="/center/edit_info" class="navigation-item"
+              >我的资料</router-link
+            >
           </el-card>
         </el-col>
         <!-- 右侧 -->
@@ -99,6 +128,17 @@ import {
   Plus,
   UploadFilled,
 } from '@element-plus/icons-vue'
+import { reqMySelfData } from '../../api/myself'
+import { ref, onMounted } from 'vue'
+onMounted(() => {
+  getMySelfData()
+})
+let selfData = ref({})
+const getMySelfData = async () => {
+  let result = await reqMySelfData()
+  selfData.value = result
+}
+console.log(selfData)
 </script>
 
 <style scoped>
@@ -165,53 +205,43 @@ import {
   font-size: 14px;
   color: #7d8090;
 }
-.navigation-item-content {
-  display: block;
-  height: 60px;
-  font-size: 14px;
-  line-height: 50px;
-  margin-bottom: 10px;
-  position: relative;
-}
-.navigation-item-content .active {
-  width: 4px;
-  height: 37px;
-  background-color: #f93684;
-  position: absolute;
-  left: 0;
-  top: 13px;
-}
-.navigation-item-content a {
-  padding: 0 21px;
-  position: absolute;
-}
 
 .navigation-block {
   display: block;
   margin-bottom: 10px;
   font-size: 14px;
+  position: relative;
 }
 .navigation-item {
   display: block;
-  padding: 17px 21px;
+  padding: 17px 19px;
+  /* box-sizing: border-box; */
+  position: relative;
 }
-::deep.el-menu-vertical-demo {
-  padding-left: 1px;
+
+:deep(.el-menu-vertical-demo) {
   border: 0;
-  height: 52px;
+  background-color: transparent;
+}
+:deep(.el-menu-vertical-demo .navigation-item) {
+  padding: 0;
 }
 
-/* 右侧代码 */
-.header-container {
-  height: 72px;
-  font-size: 14px;
-  line-height: 72px;
-  padding-left: 30px;
-  margin-bottom: 10px;
+:deep(.navigation-item:hover:before) {
+  content: '';
+  display: block;
+  background-color: #f93684;
+  width: 4px;
+  height: 37px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+  /* background-color: #f93684; */
 }
 
-.operator_line {
-  /* height: 72px; */
-  min-height: 700px;
+:deep(.el-menu .el-menu-item:hover) {
+  background-color: #fff;
 }
 </style>
