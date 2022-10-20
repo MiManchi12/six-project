@@ -4,11 +4,11 @@
             <div class="VideoList">
                 <div class="videoItemWrap">
                     <div class="videoItemContent">
-                        <div class="videoItem">
+                        <div class="videoItem" v-for="(item,index) in props.content" :key="item.id">
                             <div class="coverWrap">
                                 <div class="cover">
                                     <img src="../../assets/images/home_img_ycpc.png" alt="" class="coverClass">
-                                    <img src="../../assets/images/glasses.jpg" alt="" class="contentCover">
+                                    <img :src="item.cover" alt="" class="contentCover">
                                     <img src="../../assets/images/play.png" alt="" class="playIcon">
                                 </div>
                             </div>
@@ -19,12 +19,12 @@
                                             <span>
                                                 <img src="https://rs.dance365.com/title_original.svg" alt="">
                                             </span>
-                                            <a href="">飒气十足的扇子舞《仙剑奇侠传》，尽显武侠风范 | 城市城市城市城市</a>
+                                            <a href="">{{item.title}}</a>
                                         </div>
                                     </div>
                                     <div class="viewCount">
                                         <span class="num">
-                                            3601人浏览
+                                            {{item.statisticsBackup.viewCount}}人浏览
                                         </span>
                                     </div>
                                     <div class="remark">
@@ -63,7 +63,7 @@
                                         <span class="name">城市城市城市城市</span>
                                         <img src="../../assets/images/vip.png" alt="" class="vip">
                                     </div>
-                                    <span class="uploadTime">09-29</span>
+                                    <span class="uploadTime">{{moment(item.onsellTime).format('MM-DD')}}</span>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +75,7 @@
 </template>
 
 <script setup lang="ts">
+import moment from 'moment'
 let props = defineProps(['content'])
 </script>
 
