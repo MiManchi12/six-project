@@ -13,6 +13,10 @@ import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
+// 导入视频组件
+import "vue3-video-play/dist/style.css";
+import  vue3VideoPlay from "vue3-video-play";
+
 // import Vue from 'vue'
 // // 定义全局组件
 // import Header from './components/Header/index.vue'
@@ -29,7 +33,7 @@ app.component('Footer', Footer)
 app.component('VideoCard', VideoCard)
 
 //挂载
-app.use(router)
+app.use(router).use(vue3VideoPlay)
 .use(ElementPlus,{
     locale: zhCn,
 })

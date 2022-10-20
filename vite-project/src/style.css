@@ -27,3 +27,16 @@ p{
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+
+div {
+    display: block;
+}
+
+pre {
+    font-size: 16px;
+    font-family: PingFang SC, Lantinghei SC, Microsoft YaHei, HanHei SC, Helvetica Neue, Open Sans, Arial, Hiragino Sans GB, "\5FAE\8F6F\96C5\9ED1", STHeiti, WenQuanYi Micro Hei, SimSun, sans-serif;
+    display: block;
+    /* font-family: monospace; */
+    white-space: pre;
+    margin: 1em 0px;
+}
