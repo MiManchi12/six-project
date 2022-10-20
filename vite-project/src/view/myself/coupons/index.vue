@@ -5,7 +5,7 @@
       :body-style="{ padding: '0px' }"
       class="header-container"
     >
-      <span>资源动态</span>
+      <span>我的优惠券</span>
     </el-card>
     <el-card
       shadow="never"
