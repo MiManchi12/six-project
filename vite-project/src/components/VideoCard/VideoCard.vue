@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-
+let props = defineProps(['content'])
 </script>
 
 <style lang="less" scoped>
