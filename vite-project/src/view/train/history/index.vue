@@ -115,7 +115,7 @@ const input2 = ref('')
 <style scoped lang="less">
 .right {
     width: 1020px;
-    min-height: 500px;
+    min-height: 800px;
     // height: 836.19px;
     float: right;
     overflow: hidden;
