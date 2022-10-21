@@ -11,14 +11,14 @@ export default defineConfig({
     //配置代理跨域
     proxy: {
       '/api': {
-        target: 'http://sph-h5-api.atguigu.cn/apis',
+        target: 'https://www.dance365.com/apis',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
-      '/app-log': {
-        target: "http://gmall-h5-api.atguigu.cn",
+      '/apilogin': {
+        target: "http://sph-h5-api.atguigu.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/app-log/, '')
+        rewrite: (path) => path.replace(/^\/api/, '')
       },
     }
   }
