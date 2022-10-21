@@ -9,7 +9,7 @@ interface ResponseData<T> {
 
 // 配置新建一个新的axios实例
 let request = axios.create({
-    baseURL: '/api',
+    baseURL: '/apis',
     timeout: 50000,
 })
 
@@ -23,7 +23,9 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
     (response: AxiosResponse<ResponseData<any>>) => {
-        return response.data
+        const res = response.data
+        
+        return res 
     },
     (error) => {
         return Promise.reject(error)
