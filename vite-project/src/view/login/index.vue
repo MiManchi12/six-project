@@ -44,6 +44,7 @@ import { useUserInfoStore } from '../../store/userInfo';
 import { ref } from 'vue';
 //引入路由
 import { useRoute, useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 //使用仓库
 const userInfoStore = useUserInfoStore();
 const route = useRoute()
@@ -56,7 +57,8 @@ const loginForm = ref({
 const login = async () => {
     const { username, password } = loginForm.value
     //通知仓库发请求
-    await userInfoStore.login(username, password);
+    await userInfoStore.login(username, password)
+    ElMessage.success("登录成功")
     router.push({ path: '/home' })
 }
 </script>

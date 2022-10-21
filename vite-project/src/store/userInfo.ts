@@ -27,14 +27,14 @@ export const useUserInfoStore = defineStore('userInfo', {
         // 本地存储token
         setToken(result.token);
         //   // console.log(result);
-        if (result.code === 200) {
+        if (result.code === 20000 || result.code === 200) {
           // 登录成功获取token的值
           // 存储token信息
           this.token = result.data.token;
           // 本地存储token
           setToken(result.data.token);
           // getToken();
-          ElMessage.success("登录成功");
+          
         }
       } catch (error) {
         ElMessage.error("用户名密码错误");
