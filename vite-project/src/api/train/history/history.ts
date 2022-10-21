@@ -10,3 +10,6 @@ export const reqCreate = () => request.get('/trainingCenter/plans/search/findByU
 
 // 练习室我加入的请求函数
 export const reqJoin = () => request.get('/trainingCenter/plans/search/findByUserId?myListCategory=my_join&access_token=dae43217-4f93-453a-8af6-bebe5dd34258&pageSize=20&pageNum=0&type=system')
+
+// 单条删除练习室的数据
+export const reqDelHistory = (data)=>request.post('/task/tasks?access_token=dae43217-4f93-453a-8af6-bebe5dd34258',data)

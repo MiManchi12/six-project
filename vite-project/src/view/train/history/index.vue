@@ -35,8 +35,10 @@
                         </div>
                     </div>
                     <div class="mainItem-R">
-                        <span href="#">{{time[index]}}</span>
-                        <a>删除</a>
+                        <span>{{time[index]}}</span>
+                        <!-- <a @click="delHandler(item.id)"> -->
+                        <el-button text @click="delHandler(item.id)" class="del">删除</el-button>
+                        <!-- </a> -->
                     </div>
                 </div>
             </div>
@@ -53,7 +55,9 @@ import moment from 'moment'
 // 英文转中文引用
 import language from '../../../utils/moment-zhcn'
 // 引入reqHistory请求函数
-import { reqHistory } from '../../../api/train/history/history'
+import { reqHistory, reqDelHistory } from '../../../api/train/history/history'
+// element-plus组件
+import { ElMessage, ElMessageBox } from 'element-plus'
 // 保存请求函数
 const historyList = ref([])
 // 时间
@@ -66,7 +70,7 @@ onMounted(() => {
 })
 const getHistory = async () => {
     let result = await reqHistory()
-    // console.log(result);
+    console.log(result);
     // 保存服务器数据
     historyList.value = result.content
     let arr = result.content.map(item => {
@@ -101,7 +105,16 @@ const getHistory = async () => {
 
 }
 
-// 批量删除按钮
+
+// 删除的回调
+const delHandler = async (id) => {
+    let ids = id;
+    let result = await reqDelHistory({ name: 'batchDeleteSomeViewRecords', params: { ids: [ids] } })
+    console.log(result);
+    getHistory()
+    console.log(historyList.value);
+
+}
 
 
 // 搜索框
@@ -171,7 +184,7 @@ const input2 = ref('')
         // 中心内容区
         .noMore {
             width: 963px;
-            height: 60px;
+            // height: 60px;
             padding: 0 35px 0 22px;
 
             .mainItem {
@@ -198,10 +211,10 @@ const input2 = ref('')
                     .pic-D {
                         width: 100%;
                         height: 100%;
-                       
+
                     }
 
-                    .video-pic{
+                    .video-pic {
                         width: 30px;
                         height: 30px;
                         position: absolute;
@@ -272,13 +285,16 @@ const input2 = ref('')
                         color: #111;
                     }
 
-                    a {
+                    .del {
                         width: 110px;
                         height: 120px;
                         line-height: 122px;
                         text-align: center;
                         font-size: 14px;
-                        color: #7d8090;
+                        &:hover{
+                            color: #f93684;
+                            background-color: #eee;
+                        }
                     }
 
                 }
