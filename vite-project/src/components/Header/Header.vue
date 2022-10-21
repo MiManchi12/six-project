@@ -43,11 +43,13 @@
                 </div>
                 <!-- 登陆按钮 -->
                 <el-dropdown class="loginBtn" v-if="userInfoStore.token">
-                    <el-button type="primary">
-                        头像<el-icon class="el-icon--right">
-                            <arrow-down />
-                        </el-icon>
-                    </el-button>
+                    <div class="userInfo_icon">
+
+                    </div>
+                    <el-icon class="el-icon--right">
+                        <arrow-down />
+                    </el-icon>
+
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item @click="loginOut">退出登录</el-dropdown-item>
@@ -81,8 +83,8 @@ const toLogin = () => {
     router.push('/login')
 }
 //退出登录
-const loginOut = async () => {
-    
+const loginOut =  () => {
+
     ElMessageBox.confirm(
         "确认退出登录吗？",
         {
@@ -91,7 +93,8 @@ const loginOut = async () => {
             type: "warning",
         }
     )
-        .then(() => {
+        .then(async () => {
+            await userInfoStore.logout();
             ElMessage({
                 type: "success",
                 message: "退出成功",
@@ -104,7 +107,7 @@ const loginOut = async () => {
             });
         });
     // 通知仓库发请求获取数据
-    await userInfoStore.logout();
+
     // const result = await reqLogout();
 };
 </script>
@@ -188,6 +191,20 @@ const loginOut = async () => {
     .flex-wrap {
         margin-right: 28px;
         margin-top: 15px;
+    }
+
+    .userInfo_icon {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-image:url('@/assets/images/glasses.jpg');
+        cursor: pointer;
+        // background: #ccc;
+        border-radius: 50%;
+        margin-top: 14px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
     }
 
     .login {
