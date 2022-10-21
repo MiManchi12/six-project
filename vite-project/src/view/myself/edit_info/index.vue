@@ -15,11 +15,7 @@
       <div class="avatar-container">
         <img
           style="width: 120px; height: 120px; border-radius: 50%"
-          :src="
-                selfData.avatar
-                  ? selfData.avatar
-                  : '../images/default.png'
-              "
+          :src="selfData.avatar ? selfData.avatar : '../images/default.png'"
           alt=""
         />
       </div>
@@ -35,7 +31,11 @@
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
               <el-form-item label="用户名:">
-                <el-input :placeholder="selfData ? selfData.account : ''" size="large" v-model="input" />
+                <el-input
+                  :placeholder="selfData ? selfData.account : ''"
+                  size="large"
+                  v-model="input"
+                />
               </el-form-item>
             </el-col>
             <el-col :span="12" :offset="0">
