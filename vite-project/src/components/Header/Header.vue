@@ -42,7 +42,19 @@
                     </el-dropdown>
                 </div>
                 <!-- 登陆按钮 -->
-                <button class="login" @click="toLogin">登录</button>
+                <el-dropdown class="loginBtn" v-if="userInfoStore.token" @click="loginOut">
+                    <el-button type="primary">
+                        头像<el-icon class="el-icon--right">
+                            <arrow-down />
+                        </el-icon>
+                    </el-button>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item>退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+                <button class="login" @click="toLogin" v-else>登录</button>
             </div>
         </div>
     </div>
@@ -50,15 +62,48 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-const Route = useRoute()
-
+import { useRouter } from 'vue-router'
+//引入仓库
+import { useUserInfoStore } from '../../store/userInfo';
+//引入发请求函数
+import { reqLogout } from "../../api/index";
+import { ElMessage, ElMessageBox } from "element-plus";
+// 引入token存储的方法
+import { getToken } from "../../utils/token-utils";
+//使用仓库
+const userInfoStore = useUserInfoStore();
+console.log(userInfoStore.token)
 const router = useRouter()
 // 跳转登陆
 const toLogin = () => {
     router.push('/login')
 }
-
+//退出登录
+const loginOut = async () => {
+    ElMessageBox.confirm(
+        "确认退出登录吗？",
+        {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            type: "warning",
+        }
+    )
+        .then(() => {
+            ElMessage({
+                type: "success",
+                message: "退出成功",
+            });
+        })
+        .catch(() => {
+            ElMessage({
+                type: "info",
+                message: "退出失败",
+            });
+        });
+    // 通知仓库发请求获取数据
+    await userInfoStore.logout();
+    // const result = await reqLogout();
+};
 </script>
 
 <style lang="less" scoped>

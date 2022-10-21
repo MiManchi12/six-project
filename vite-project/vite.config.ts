@@ -16,9 +16,9 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '')
       },
       '/apilogin': {
-        target: "http://sph-h5-api.atguigu.cn",
+        target: "http://sph-h5-api.atguigu.cn/api",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/apilogin/, '')
       },
     }
   }
