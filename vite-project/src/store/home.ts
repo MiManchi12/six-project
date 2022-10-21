@@ -8,19 +8,19 @@ export const useHomeStore = defineStore('home', {
         }
     },
     actions: {
-        async getRecommendList() {
+        async getRecommendList({column, pageNum, localCache}) {
             let params = {
                 access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
-                column: 'recommend',
+                column,
                 pageSize: 20,
-                pageNum: 0,
-                localCache: 0
+                pageNum,
+                localCache
             }
             let result = await reqGetRecommendList(params)
-            this.content = result.data.content
+            this.content =  this.content.concat(result.data.content)
 
 
-        }
+        },
     }
 
 })

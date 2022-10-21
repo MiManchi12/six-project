@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios'
 
 /* 定义response对象的data接口 */
 interface ResponseData<T> {
@@ -22,12 +22,12 @@ request.interceptors.response.use(
   (response: AxiosResponse<ResponseData<any>>) => {
 
 
-    return response.data
-
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
+        return response.data
+    
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
 )
 
 export default request

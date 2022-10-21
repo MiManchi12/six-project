@@ -3,7 +3,7 @@
         <div class="videoContainer">
             <div class="VideoList">
                 <div class="videoItemWrap">
-                    <div class="videoItemContent"  v-for="(item,index) in props.content" :key="item.id" >
+                    <div class="videoItemContent" v-for="(item,index) in props.content" :key="item.id">
                         <div class="videoItem" @click="">
                             <div class="coverWrap">
                                 <div class="cover">
@@ -68,8 +68,8 @@
                                     <div class="left">
                                         <img :src="item.creatorBackup.avatar" alt="" class="avatar">
                                         <span class="name">{{item.creatorBackup.name}}</span>
-                                        <img :src="item.creatorBackup.certificationType==='personal'?'../../assets/images/vip.png':''||item.creatorBackup.certificationType==='organization'?'../../assets/images/authenticate_organ@3x.png':''"
-                                            alt="" class="vip" v-show="!item.creatorBackup.certificationType">
+                                        <img :src="item.creatorBackup.certificationType==='personal'?'https://rs.dance365.com/authenticate_personal@3x.png':''||item.creatorBackup.certificationType==='organization'?'https://rs.dance365.com/authenticate_organ@3x.png':''"
+                                            alt="" class="vip" v-show="item.creatorBackup.certificationType!=''">
                                     </div>
                                     <span class="uploadTime">{{moment(item.onsellTime).format('MM-DD')}}</span>
                                 </div>
@@ -77,6 +77,8 @@
                         </div>
                     </div>
                 </div>
+                <div class="loadMore" v-loading="MoreLoading" element-loading-text="Loading..." @click="loadMore">
+                    加载更多</div>
             </div>
         </div>
     </div>
@@ -84,8 +86,64 @@
 
 <script setup lang="ts">
 import moment from 'moment'
-let props = defineProps(['content'])
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useHomeStore } from '@/store/home'
 
+const HomeStore = useHomeStore()
+const pageNum = ref(1);
+const localCache = ref(20)
+const column = ref('')
+let props = defineProps(['content'])
+let MoreLoading = ref(false)
+const path = useRoute().path
+//浏览器滚动的事件函数
+const windowScrollListener = () => {
+    //获取操作元素最顶端到页面顶端的垂直距离
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // windowHeight是可视区的高度
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    // scrollHeight是滚动条的总高度
+    var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    // 滚动条到底部
+    if (scrollTop + windowHeight >= scrollHeight) {
+        // 到了底部之后想做的操作,如到了底部之后加载
+        MoreLoading.value = true;
+        loadMore()
+        window.removeEventListener('scroll', windowScrollListener)
+    }
+}
+
+const loadMore = async() => {
+    if (path === "/home/recommend") {
+        column.value = 'recommend';
+        pageNum.value++;
+        localCache.value = 20;
+        MoreLoading.value = true;
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
+    }
+    else if (path === "/home/original") {
+        MoreLoading.value = true;
+        
+    }
+    else if (path === "/home/course") {
+        MoreLoading.value = true;
+        
+    }
+    else if (path === "/home/specialTopic") {
+        MoreLoading.value = true;
+        
+    }
+    else if (path === "/home/information") {
+        MoreLoading.value = true;
+        
+    }
+    
+}
+onMounted(()=>{
+    window.addEventListener('scroll', windowScrollListener);
+})
 </script>
 
 <style lang="less" scoped>
@@ -104,7 +162,20 @@ let props = defineProps(['content'])
 }
 
 .VideoList {
-    width: 1200px
+    width: 1200px;
+
+    .loadMore {
+        width: 140px;
+        height: 40px;
+        margin: 20px auto 0;
+        font-size: 14px;
+        color: #82858e;
+        cursor: pointer;
+        text-align: center;
+        background-color: #fff;
+        line-height: 40px;
+        border-radius: 4px;
+    }
 }
 
 .videoItemWrap {
@@ -194,6 +265,7 @@ let props = defineProps(['content'])
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
+                height: 36px;
 
                 span {
                     box-sizing: border-box;
@@ -202,9 +274,10 @@ let props = defineProps(['content'])
                     width: 24px;
                     height: 16px;
                     vertical-align: bottom;
-                    img{
-                        width:26px;
-                        height:16px;
+
+                    img {
+                        width: 26px;
+                        height: 16px;
                     }
                 }
 
@@ -265,7 +338,7 @@ let props = defineProps(['content'])
                 width: 24px;
                 height: 24px;
                 position: relative;
-                border-radius:50%;
+                border-radius: 50%;
             }
 
             span {
