@@ -13,10 +13,8 @@
       class="operator_line"
     >
       <div class="avatar">
-        <img
-          :src="vipData.avatar ? vipData.avatar : '../images/default.png'"
-          alt=""
-        />
+        <img v-if="vipData.avatar" :src="vipData.avatar" alt="" />
+        <img v-else src="../images/default.png" alt="" />
         <div class="name_info">
           <p class="name">1563587_xnN4</p>
           <p class="status">您还不是会员</p>
@@ -67,6 +65,7 @@
             margin: 0 auto;
             border-radius: 10px;
           "
+          @click="centerDialogVisible = true"
           >立即以588元开通</el-button
         >
       </div>
@@ -224,6 +223,24 @@
           </li>
         </ul>
       </div>
+      <el-dialog v-model="centerDialogVisible" width="30%" center>
+        <span>
+          仅限1000周岁下购买，请在APP中进行身份认证,打开APP
+          我的->管理我的主页->我的资料->身份认证
+        </span>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button
+              type="primary"
+              @click="centerDialogVisible = false"
+              color="#ff4e86"
+              style="color: #fff"
+            >
+              确定
+            </el-button>
+          </span>
+        </template>
+      </el-dialog>
       <el-divider />
     </el-card>
   </el-col>
@@ -244,14 +261,16 @@ import {
 import { defineComponent, onMounted, ref } from 'vue'
 import { reqVipData } from '../../../api/myself/vipInfo/vipInfo'
 onMounted(() => {
-  getAppData()
+  setTimeout(() => {
+    getVipData()
+  })
 })
+const centerDialogVisible = ref(false)
 const vipData = ref({})
-const getAppData = async () => {
+const getVipData = async () => {
   let result = await reqVipData()
   vipData.value = result
 }
-console.log(vipData)
 </script>
 
 <style scoped>
@@ -371,5 +390,8 @@ console.log(vipData)
 }
 .right_item div {
   margin-top: 16px;
+}
+.dialog-footer button:first-child {
+  margin-right: 10px;
 }
 </style>
