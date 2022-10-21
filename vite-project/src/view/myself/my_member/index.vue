@@ -13,7 +13,10 @@
       class="operator_line"
     >
       <div class="avatar">
-        <img src="../images/default.png" alt="" />
+        <img
+          :src="vipData.avatar ? vipData.avatar : '../images/default.png'"
+          alt=""
+        />
         <div class="name_info">
           <p class="name">1563587_xnN4</p>
           <p class="status">您还不是会员</p>
@@ -238,7 +241,17 @@ import {
   Plus,
   UploadFilled,
 } from '@element-plus/icons-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { reqVipData } from '../../../api/myself/vipInfo/vipInfo'
+onMounted(() => {
+  getAppData()
+})
+const vipData = ref({})
+const getAppData = async () => {
+  let result = await reqVipData()
+  vipData.value = result
+}
+console.log(vipData)
 </script>
 
 <style scoped>
@@ -274,7 +287,7 @@ import { defineComponent } from 'vue'
 }
 .name_info .name {
   font-size: 20px;
-  margin:20px 0 0;
+  margin: 20px 0 0;
 }
 .name_info .status {
   font-size: 14px;
@@ -311,7 +324,7 @@ import { defineComponent } from 'vue'
 .price_area_main .price_block:nth-child(3) {
   border: 2px solid #ff4e86;
   color: #ff4e86;
-  background-color: rgba(255, 160, 160,0.2);
+  background-color: rgba(255, 160, 160, 0.2);
 }
 .price_button {
   width: 100%;

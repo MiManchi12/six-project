@@ -7,8 +7,8 @@
                 <div class="detailContainer">
                     <!-- 播放器窗口 -->
                     <div class="playContainer">
-                        <vue3VideoPlay width="1060px" height="595px" :src="options.src" :type="options.type" :poster="options.poster"
-                            :autoPlay="false">
+                        <vue3VideoPlay width="1060px" height="595px" :src="options.src" :type="options.type"
+                            :poster="options.poster" :autoPlay="false">
                         </vue3VideoPlay>
                     </div>
                     <!-- 播放量评论收藏 -->
@@ -487,13 +487,22 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
+import { useRoute } from 'vue-router'
+const path = useRoute().fullPath
 let foldToggle = ref(false)
+let video = ref()
 const options = reactive({
     src: "https://rs.dance365.com/video/be6a906567bc4eaf9a91a797062b6e19_rs_2ecda0ae248a493d877e7dc79f564deal9of.m3u8",
-    type:'m3u8',
+    type: 'm3u8',
     poster: "https://rs.dance365.com/photo/8b216916-9c9d-471f-983a-b98a77c77c4b.jpg"
 })
+onMounted(() => {
+    getVideo()
+})
+const getVideo = async () => {
+    let index = path.split('&')
+}
 </script>
 
 <style lang="less" scoped>

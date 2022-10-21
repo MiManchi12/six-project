@@ -1,9 +1,14 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
   server: {
     //设置域名
     host: '127.0.0.1',
@@ -15,10 +20,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
-      '/apilogin': {
-        target: "http://sph-h5-api.atguigu.cn",
+      '/app-log': {
+        target: "http://gmall-h5-api.atguigu.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/app-log/, '')
       },
     }
   }
