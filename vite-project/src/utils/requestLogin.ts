@@ -1,7 +1,7 @@
 import axios, { type AxiosResponse } from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import pinia from '@/stores/index';
-import { useUserInfoStore } from '../stores/userInfo';
+import pinia from '../store/index';
+import { useUserInfoStore } from '../store/userInfo';
 
 
 /* 定义response对象的data接口 */
@@ -13,7 +13,7 @@ interface ResponseData<T> {
 
 // 配置新建一个 axios 实例
 const service = axios.create({
-	baseURL: '/apilogin',
+	baseURL: 'apilogin',
 	timeout: 50000,
 });
 
@@ -21,7 +21,7 @@ const service = axios.create({
 service.interceptors.request.use(
 	(config:any) => {
 		if(useUserInfoStore().token){
-			config.headers['token'] = useUserInfoStore().token;
+			
 		}
 		return config;
 	}
