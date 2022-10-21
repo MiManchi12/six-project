@@ -114,7 +114,7 @@ const windowScrollListener = () => {
     }
 }
 
-const loadMore = async() => {
+const loadMore = async () => {
     if (path === "/home/recommend") {
         column.value = 'recommend';
         pageNum.value++;
@@ -124,24 +124,44 @@ const loadMore = async() => {
         MoreLoading.value = false;
     }
     else if (path === "/home/original") {
+        column.value = 'original';
+        pageNum.value++;
+        localCache.value = 20;
         MoreLoading.value = true;
-        
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/course") {
+        column.value = 'course';
+        pageNum.value++;
+        localCache.value = 20;
         MoreLoading.value = true;
-        
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/specialTopic") {
+        column.value = 'specialTopic';
+        pageNum.value++;
+        localCache.value = 20;
         MoreLoading.value = true;
-        
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/information") {
+        column.value = 'information';
+        pageNum.value++;
+        localCache.value = 20;
         MoreLoading.value = true;
-        
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
+
     }
-    
+
 }
-onMounted(()=>{
+onMounted(() => {
     window.addEventListener('scroll', windowScrollListener);
 })
 </script>
