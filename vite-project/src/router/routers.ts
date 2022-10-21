@@ -153,10 +153,42 @@ const routers = [
         component: () => import('../view/exchange/index.vue')
     },
     // 首页
-    {
+    {   name: 'home',
         path: '/home',
-        name: 'Home',
-        component: () => import('../view/home/index.vue')
+        component: () => import('../view/home/index.vue'),
+        redirect: '/home/recommend',
+        children: [
+            {
+                name: 'recommend',
+                path: '/home/recommend',
+                component: () => import('../view/home/recommend/index.vue')
+            },
+            {
+                name: 'original',
+                path: '/home/original',
+                component: () => import('../view/home/original/index.vue')
+            },
+            {
+                name: 'course',
+                path: '/home/course',
+                component: () => import('../view/home/course/index.vue')
+            },
+            {
+                name: 'specialTopic',
+                path: '/home/specialTopic',
+                component: () => import('../view/home/specialTopic/index.vue')
+            },
+            {
+                name: 'information',
+                path: '/home/information',
+                component: () => import('../view/home/information/index.vue')
+            },
+            {
+                name: 'attention',
+                path: '/home/attention',
+                component: () => import('../view/home/attention/index.vue')
+            }
+        ]
     },
     // 详情页
     {
