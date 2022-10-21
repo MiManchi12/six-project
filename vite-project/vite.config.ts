@@ -15,10 +15,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
-      '/apilogin': {
+      '/app-log': {
         target: "http://gmall-h5-api.atguigu.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/app-log/, '')
       },
     }
   }
