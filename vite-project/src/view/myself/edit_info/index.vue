@@ -15,7 +15,11 @@
       <div class="avatar-container">
         <img
           style="width: 120px; height: 120px; border-radius: 50%"
-          src="../images/default.png"
+          :src="
+                selfData.avatar
+                  ? selfData.avatar
+                  : '../images/default.png'
+              "
           alt=""
         />
       </div>
@@ -31,7 +35,7 @@
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
               <el-form-item label="用户名:">
-                <el-input placeholder="用户名" size="large" v-model="input" />
+                <el-input :placeholder="selfData ? selfData.account : ''" size="large" v-model="input" />
               </el-form-item>
             </el-col>
             <el-col :span="12" :offset="0">
@@ -39,6 +43,7 @@
                 <div class="demo-date-picker">
                   <div class="block">
                     <el-date-picker
+                      v-model="timeArr"
                       type="date"
                       placeholder="选择日期"
                       style="height: 40px"
@@ -80,21 +85,25 @@
             </el-col>
             <el-col :span="12" :offset="0">
               <el-form-item label="技能水平:">
-                <el-select v-model="value" placeholder="零基础" size="large">
+                <el-select
+                  v-model="groupTypeList.name"
+                  placeholder="零基础"
+                  size="large"
+                >
                   <el-option
-                    v-for="item in cities"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
+                    v-for="item in groupTypeList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.desc"
                   >
-                    <span style="float: left">{{ item.label }}</span>
+                    <span style="float: left">{{ item.name }}</span>
                     <span
                       style="
                         float: right;
                         color: var(--el-text-color-secondary);
                         font-size: 13px;
                       "
-                      >{{ item.value }}</span
+                      >{{ item.desc }}</span
                     >
                   </el-option>
                 </el-select>
@@ -151,7 +160,7 @@
                   </el-form>
                   <p>推荐兴趣技能</p>
 
-                  <!-- 滚动 --> 
+                  <!-- 滚动 -->
                   <el-scrollbar height="300px">
                     <p
                       v-for="item in 20"
@@ -191,6 +200,7 @@
           style="width: 140px; height: 46px; color: #fff"
           color="#f93684"
           size="default"
+          @click="saveHandler"
           >保存</el-button
         >
       </div>
@@ -199,6 +209,7 @@
 </template>
 
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
 //引入element-plus提供icon图标组件
 import {
   Check,
@@ -210,43 +221,18 @@ import {
   Plus,
   UploadFilled,
 } from '@element-plus/icons-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 
 import { ref, reactive } from 'vue'
+import { reqGroupType } from '../../../api/myself/editInfo/editInfo'
+import { reqMySelfData } from '../../../api/myself/userInfo/userInfo'
+const sexState = ref(true)
+const timeArr = ref('')
+const groupTypeList = ref({})
 const input = ref('')
 const dialogTableVisible = ref(false)
 const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
-const cities = [
-  {
-    value: '零基础小白',
-    label: '零基础',
-  },
-  {
-    value: '0-1年学龄',
-    label: '业余初级',
-  },
-  {
-    value: '1-2年学龄',
-    label: '业余中级',
-  },
-  {
-    value: '2-4年学龄',
-    label: '业余高级',
-  },
-  {
-    value: '4-6年学龄',
-    label: '专业初级',
-  },
-  {
-    value: '6-8年学龄',
-    label: '专业中级',
-  },
-  {
-    value: '8年以上学龄',
-    label: '专业高级',
-  },
-]
 const form = reactive({
   name: '',
   region: '',
@@ -316,6 +302,33 @@ const options = [
     ],
   },
 ]
+const selfData = ref({})
+onMounted(() => {
+  getGroupList()
+  getMySelfData()
+})
+const getGroupList = async () => {
+  let result = await reqGroupType()
+  const group = result.map((item: any) => {
+    return item.data
+  })
+
+  groupTypeList.value = group
+}
+
+const getMySelfData = async () => {
+  let result = await reqMySelfData()
+  selfData.value = result
+}
+console.log(groupTypeList)
+const saveHandler = () => {
+  setTimeout(() => {
+    ElMessage({
+      message: '保存成功',
+      type: 'success',
+    })
+  }, 500)
+}
 </script>
 
 <style scoped>
