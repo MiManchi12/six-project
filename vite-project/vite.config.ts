@@ -11,7 +11,7 @@ export default defineConfig({
     //配置代理跨域
     proxy: {
       '/api': {
-        target: 'http://sph-h5-api.atguigu.cn/',
+        target: 'http://sph-h5-api.atguigu.cn/apis',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
