@@ -202,6 +202,10 @@ let props = defineProps(['content'])
                     width: 24px;
                     height: 16px;
                     vertical-align: bottom;
+                    img{
+                        width:26px;
+                        height:16px;
+                    }
                 }
 
             }
@@ -261,6 +265,7 @@ let props = defineProps(['content'])
                 width: 24px;
                 height: 24px;
                 position: relative;
+                border-radius:50%;
             }
 
             span {

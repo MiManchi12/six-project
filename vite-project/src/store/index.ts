@@ -1,6 +1,6 @@
 
 import {createPinia} from 'pinia'
 
-const Pinia = create()
+const Pinia = createPinia()
 
 export default Pinia
