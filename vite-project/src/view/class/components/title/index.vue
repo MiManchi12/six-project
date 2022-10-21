@@ -5,11 +5,11 @@
     <Header></Header>
     <div class="nav">
       <div class="navitem">
-        <span class="border">会员专区</span>
-        <span>视频课</span>
-        <span>直播课</span>
-        <span>线下课</span>
-        <span>主题</span>
+        <router-link class="border" to="/class/vip">会员专区</router-link>
+        <router-link to="/class/video">视频课</router-link>
+        <router-link to="/class/live">直播课</router-link>
+        <router-link to="/class/offline">线下课</router-link>
+        <router-link to="/class/subject">主题</router-link>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
     box-sizing: border-box;
     padding: 0 300px;
 
-    span {
+    router-link {
       display: inline-block;
     }
 
