@@ -86,13 +86,14 @@
 
 <script setup lang="ts">
 import moment from 'moment'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHomeStore } from '@/store/home'
 
 const HomeStore = useHomeStore()
 const pageNum = ref(1);
 const localCache = ref(20)
+const column = ref('')
 let props = defineProps(['content'])
 let MoreLoading = ref(false)
 const path = useRoute().path
@@ -108,46 +109,41 @@ const windowScrollListener = () => {
     if (scrollTop + windowHeight >= scrollHeight) {
         // 到了底部之后想做的操作,如到了底部之后加载
         MoreLoading.value = true;
-        // resourceApi.getRecommend(1, 20)
-        //     .then((res) => {
-        //         recommendList.value = recommendList.value.concat(res.content);
-        //         MoreLoading.value = false;
-        //     })
+        loadMore()
         window.removeEventListener('scroll', windowScrollListener)
     }
 }
 
-const loadMore = () => {
-    if (path=== "/home/resource/recommend") {
-        pageNum.value = 1;
+const loadMore = async() => {
+    if (path === "/home/recommend") {
+        column.value = 'recommend';
+        pageNum.value++;
         localCache.value = 20;
         MoreLoading.value = true;
-       
-        // resourceApi.getRecommend(pageNum.value, localCache.value)
-        //     .then((res) => {
-        //         recommendList.value = recommendList.value.concat(res.content);
-        //         MoreLoading.value = false;
-        //     })
+        await HomeStore.getRecommendList({ column: column.value, pageNum: pageNum.value, localCache: localCache.value })
+        MoreLoading.value = false;
     }
-    else if (path === "/home/resource/information") {
+    else if (path === "/home/original") {
         MoreLoading.value = true;
-        // resourceApi.getInformation(1)
-        //     .then((res) => {
-        //         recommendList.value = recommendList.value.concat(res.content);
-        //         MoreLoading.value = false;
-        //     })
+        
     }
-    else {
-        pageNum.value = 1;
-        localCache.value = 20;
+    else if (path === "/home/course") {
         MoreLoading.value = true;
-        // resourceApi.getRecommend(pageNum.value, localCache.value)
-        //     .then((res) => {
-        //         recommendList.value = recommendList.value.concat(res.content);
-        //         MoreLoading.value = false;
-        //     })
+        
     }
+    else if (path === "/home/specialTopic") {
+        MoreLoading.value = true;
+        
+    }
+    else if (path === "/home/information") {
+        MoreLoading.value = true;
+        
+    }
+    
 }
+onMounted(()=>{
+    window.addEventListener('scroll', windowScrollListener);
+})
 </script>
 
 <style lang="less" scoped>
