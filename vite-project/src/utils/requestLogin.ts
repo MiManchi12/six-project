@@ -13,15 +13,17 @@ interface ResponseData<T> {
 
 // 配置新建一个 axios 实例
 const service = axios.create({
-	baseURL: 'apilogin',
+	baseURL: '/app-log',
 	timeout: 50000,
 });
 
 // 添加请求拦截器
 service.interceptors.request.use(
-	(config:any) => {
-		if(useUserInfoStore().token){
-			
+	(config: any) => {
+
+		let token = useUserInfoStore().token
+		if (token) {
+			config.headers['token'] = token
 		}
 		return config;
 	}

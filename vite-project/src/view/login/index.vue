@@ -8,7 +8,7 @@
                         <form action="##">
                             <!-- 账号 -->
                             <div class="input-text clearFix">
-                                <el-input v-model="loginForm.phone" placeholder="邮箱/用户名/手机号" />
+                                <el-input v-model="loginForm.username" placeholder="邮箱/用户名/手机号" />
                             </div>
                             <!-- 密码 -->
                             <div class="input-text clearFix">
@@ -49,14 +49,14 @@ const userInfoStore = useUserInfoStore();
 const route = useRoute()
 const router = useRouter()
 const loginForm = ref({
-    phone: '18235508649',
-    password: '123123'
+    username: 'admin',
+    password: '111111'
 })
 // 点击登录的回调
 const login = async () => {
-    const { phone, password } = loginForm.value
+    const { username, password } = loginForm.value
     //通知仓库发请求
-    await userInfoStore.login(phone, password);
+    await userInfoStore.login(username, password);
     router.push({ path: '/home' })
 }
 </script>

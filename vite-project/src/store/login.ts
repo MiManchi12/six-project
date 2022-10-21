@@ -18,7 +18,6 @@ export const useLoginStore = defineStore('login', {
         }),
         actions:{
             async login(phone: string, password: string) {
-                try {
                     try {
                         let result = await reqLogin({ phone, password })
                         // console.log(123,result)
@@ -37,10 +36,7 @@ export const useLoginStore = defineStore('login', {
                         ElMessage.error('登录失败')
                         return Promise.reject(error)
                     }
-                } catch (error) {
-                    ElMessage.error('用户名密码错误');
-                    return Promise.reject(error)
-                }
+                
             },
             async getInfo(){
                 try {

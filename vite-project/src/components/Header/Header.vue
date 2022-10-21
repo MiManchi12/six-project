@@ -42,7 +42,7 @@
                     </el-dropdown>
                 </div>
                 <!-- 登陆按钮 -->
-                <el-dropdown class="loginBtn" v-if="userInfoStore.token" @click="loginOut">
+                <el-dropdown class="loginBtn" v-if="userInfoStore.token">
                     <el-button type="primary">
                         头像<el-icon class="el-icon--right">
                             <arrow-down />
@@ -50,7 +50,7 @@
                     </el-button>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item>退出登录</el-dropdown-item>
+                            <el-dropdown-item @click="loginOut">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -80,6 +80,7 @@ const toLogin = () => {
 }
 //退出登录
 const loginOut = async () => {
+    
     ElMessageBox.confirm(
         "确认退出登录吗？",
         {
