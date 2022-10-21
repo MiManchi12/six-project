@@ -207,7 +207,7 @@ const dialogVisible = ref(false);
 	margin-left: 10px;
 }
 
-.checkbox {
+.checkbox{
 	width: 110px;
 	margin-top: 10px;
 }

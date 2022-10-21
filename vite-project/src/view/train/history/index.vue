@@ -5,52 +5,120 @@
             <span class="nav">历史记录</span>
         </div>
         <div class="r-content">
+            <!-- 搜索框 和 批量删除 -->
             <div class="r-warp">
                 <div class="demo-input-size">
                     <el-input v-model="input2" class="w-50 m-2" size="large" placeholder="Please Input"
                         :prefix-icon="Search" />
                 </div>
                 <el-button size="large" @click="" color="#e6e6eb" style="margin-left: 10px;">搜索</el-button>
-                <span class="cont">批量删除</span>
+                <span class="cont" @click="delete">批量删除</span>
+                <!-- <div class="cancel">
+                    <span>取消</span>
+                    <span>全选</span>
+                    <span>删除</span>
+                </div> -->
             </div>
+            <!-- 中心内容区 -->
             <div class="noMore">
-                <div class="mainItem">
-                    <div class="mainItem-L">
-                        <div class="mainItem-img">
-                            <img src="./1.jpg" alt="">
-                        </div>
-                        <div class="mainItem-title">
-                            <p>中老年朋友练好这一点，心态稳定身体康泰！</p>
-                            <a href="">动态</a>
-                            <div>
-                                <img src="./1.jpg" alt="">
-                                <a class="mainItem-title-C" href="">精品古筝课免费领8节课</a>
-                            </div>
+                <div class="mainItem" v-for="(item,index) in historyList" :key="item.id">
+                    <div class="mainItem-img">
+                        <img :src="item.momentBackup.cover" alt="" class="pic-D">
+                        <img src="./1.png" alt="" class="video-pic">
+                    </div>
+                    <div class="mainItem-title">
+                        <p>{{item.momentTitle}}</p>
+                        <a href="" class="mainItem-a">作品</a>
+                        <div class="main-pic">
+                            <img :src="item.momentBackup.creatorBackup.avatar" alt="">
+                            <a class="mainItem-title-C" href="">{{item.momentBackup.creatorBackup.name}}</a>
                         </div>
                     </div>
                     <div class="mainItem-R">
-                        <span href="#">昨天 22:09</span>
+                        <span href="#">{{time[index]}}</span>
                         <a>删除</a>
                     </div>
                 </div>
             </div>
+            <div></div>
+            <!-- 分页器 -->
+            <!-- <div class="pagination">
+
+            </div>
+            <el-pagination layout="->,prev, pager, next" :total="50" /> -->
+
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Search } from '@element-plus/icons-vue'
+// moment组件引用
+import moment from 'moment'
+// 英文转中文引用
+import language from '../../../utils/moment-zhcn'
+// 引入reqHistory请求函数
+import { reqHistory } from '../../../api/train/history/history'
+// 保存请求函数
+const historyList = ref([])
+// 时间
+let time = ref([])
+// 组件挂载请求
+onMounted(() => {
+    getHistory()
+})
+const getHistory = async () => {
+    let result = await reqHistory()
+    // console.log(result);
+    // 保存服务器数据
+    historyList.value = result.content
+    let arr = result.content.map(item => {
+        let timer
+        // 今日日期
+        let timeDay = moment().format('YYYY-MM-DD')
+        // 更新日期
+        let update = moment(item.updateTime).format('YYYY-MM-DD')
+        // console.log(update);
 
+        // 如果是同一天返回true
+        if (moment(update).isSame(timeDay)) {
+            moment.locale('zh-cn', language)
+            // 格式化更新日期
+            let update1 = moment(item.updateTime).format('YYYY-MM-DD HH:mm:ss')
+            // 一天以内显示多少小时前
+            timer = moment(update1).fromNow()
+        } else {
+            let update1 = moment(item.updateTime).format('YYYY-MM-DD HH:mm:ss')
+            // 自定义格式
+            timer = moment(update1).calendar(timeDay, {
+                lastDay: '[昨天]HH:mm',
+                lastWeek: 'MM-DD'
+            });
+        }
+        return timer
+
+    })
+    // console.log();
+    time.value = arr
+    // console.log(time.value);
+
+}
+
+// 批量删除按钮
+
+
+// 搜索框
 const input2 = ref('')
-
 </script>
 
 <style scoped lang="less">
 .right {
     width: 1020px;
-    height: 836.19px;
+    min-height: 500px;
+    // height: 836.19px;
     float: right;
+    overflow: hidden;
 
     .left-h-nav {
         width: 1020px;
@@ -74,15 +142,19 @@ const input2 = ref('')
     // 内容区
     .r-content {
         width: 1020px;
-        height: 730px;
+        // height: 730px;
+        overflow: hidden;
         background-color: #fff;
         border-radius: 4px;
         margin-top: 10px;
+        margin-bottom: 30px;
 
+        // 搜索框
         .r-warp {
             width: 949px;
             height: 40px;
             padding: 14px 40px 10px 31px;
+            overflow: hidden;
 
             .demo-input-size {
                 width: 270px;
@@ -99,6 +171,7 @@ const input2 = ref('')
             }
         }
 
+        // 中心内容区
         .noMore {
             width: 963px;
             height: 60px;
@@ -108,86 +181,118 @@ const input2 = ref('')
                 width: 100%;
                 height: 130px;
                 border-bottom: 1px solid #eee;
-            }
 
-            .mainItem:hover {
-                background: #eee;
-            }
+                &:hover {
+                    background: #eee;
+                }
 
-            .mainItem-img {
-                width: 172px;
-                height: 102px;
-                border-radius: 5px;
-                margin: 14px -10px 0 10px;
-                float: left;
-            }
+                a {
+                    font-size: 14px;
+                }
 
-            .mainItem-img img {
-                width: 100%;
-                height: 100%;
-            }
+                .mainItem-img {
+                    width: 172px;
+                    height: 102px;
+                    border-radius: 5px;
+                    margin: 14px 10px 0 10px;
+                    float: left;
+                    position: relative;
 
-            .mainItem-title {
-                width: 320px;
-                font-size: 16px;
-                color: #111;
-                /* background: #eee; */
-                float: left;
-                margin: 14px 0 0 10px;
-                padding: 10px 50px 0px 20px;
-            }
+                    .pic-D {
+                        width: 100%;
+                        height: 100%;
+                       
+                    }
 
-            .mainItem-title img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                line-height: 40px;
-            }
+                    .video-pic{
+                        width: 30px;
+                        height: 30px;
+                        position: absolute;
+                        left: 0;
+                        bottom: 4px;
+                        z-index: 9999;
+                    }
+                }
 
-            .mainItem-title p {
-                line-height: 30px;
-            }
+                .mainItem-title {
+                    height: 100%;
+                    width: 400px;
+                    word-wrap: break-word;
+                    font-size: 16px;
+                    color: #111;
+                    float: left;
+                    padding: 0px 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-content: flex-start;
+                    justify-content: space-evenly;
 
-            .mainItem-title a {
-                line-height: 30px;
-                font-size: 14px;
-            }
+                    p {
+                        // line-height: 30px;
+                        cursor: pointer;
+                        margin: 0;
+                    }
 
-            .mainItem-title .mainItem-title-C {
-                vertical-align: top;
-                margin-left: 15px;
-                font-size: 16px;
-                color: #111;
-            }
+                    .mainItem-a {
+                        // margin-top: 10px;
+                        cursor: pointer;
+                    }
 
-            .mainItem-R {
-                width: 264px;
-                height: 102px;
-                /* background: #f93684; */
-                float: right;
-                /* margin-top: 1px; */
-                display: flex;
-            }
+                    .main-pic {
+                        cursor: pointer;
+                        // margin-bottom: 10px;
 
-            .mainItem-R span {
-                flex: 1;
-                line-height: 122px;
-                text-align: center;
-                font-size: 16px;
-                color: #111;
-            }
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            line-height: 40px;
+                        }
 
-            .mainItem-R a {
-                /* padding: 8px 0px; */
-                width: 110px;
-                height: 120px;
-                line-height: 122px;
-                text-align: center;
-                font-size: 14px;
-                color: #7d8090;
-            }
+                        .mainItem-title-C {
+                            line-height: 30px;
+                            vertical-align: top;
+                            margin-left: 15px;
+                            font-size: 16px;
+                            color: #111;
+                        }
+                    }
+                }
 
+                .mainItem-R {
+                    width: 264px;
+                    height: 102px;
+                    /* background: #f93684; */
+                    float: right;
+                    /* margin-top: 1px; */
+                    display: flex;
+
+                    span {
+                        flex: 1;
+                        line-height: 122px;
+                        text-align: center;
+                        font-size: 16px;
+                        color: #111;
+                    }
+
+                    a {
+                        width: 110px;
+                        height: 120px;
+                        line-height: 122px;
+                        text-align: center;
+                        font-size: 14px;
+                        color: #7d8090;
+                    }
+
+                }
+            }
         }
+
+        // 分页器
+        // .pagination {
+        //     min-width: 200px;
+        //     background-color: #f93684;
+        // }
     }
 
 }

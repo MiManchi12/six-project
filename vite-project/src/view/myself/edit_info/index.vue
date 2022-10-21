@@ -31,7 +31,7 @@
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
               <el-form-item label="用户名:">
-                <el-input placeholder="1563587_xnN4" size="large" />
+                <el-input placeholder="用户名" size="large" v-model="input" />
               </el-form-item>
             </el-col>
             <el-col :span="12" :offset="0">
@@ -51,13 +51,7 @@
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
               <el-form-item label="性别:">
-                <el-button
-                  type="primary"
-                  style="width: 70px; color: #fff"
-                  size="default"
-                  color="#ff4e86"
-                  >男</el-button
-                >
+                <el-button type="default" style="width: 70px">男</el-button>
                 <el-button type="default" style="width: 70px" size="default"
                   >女</el-button
                 >
@@ -86,13 +80,24 @@
             </el-col>
             <el-col :span="12" :offset="0">
               <el-form-item label="技能水平:">
-                <div class="example-block">
-                  <el-cascader
-                    size="large"
-                    v-model="value"
-                    :options="options"
-                  />
-                </div>
+                <el-select v-model="value" placeholder="零基础" size="large">
+                  <el-option
+                    v-for="item in cities"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
+                    <span style="float: left">{{ item.label }}</span>
+                    <span
+                      style="
+                        float: right;
+                        color: var(--el-text-color-secondary);
+                        font-size: 13px;
+                      "
+                      >{{ item.value }}</span
+                    >
+                  </el-option>
+                </el-select>
               </el-form-item>
             </el-col>
           </el-row>
@@ -130,24 +135,46 @@
                       <el-input
                         class="w-50 m-2"
                         size="large"
-                        placeholder="Please Input"
+                        placeholder="搜索兴趣技能"
                         :prefix-icon="Search"
                         style="width: 300px"
                       />
-                      <el-button type="primary" color="#f5f7f9" size="default">
+                      <el-button
+                        type="primary"
+                        color="#f5f7f9"
+                        size="large"
+                        style="margin-left: 10px"
+                      >
                         搜索
                       </el-button>
                     </el-form-item>
                   </el-form>
+                  <p>推荐兴趣技能</p>
+
+                  <!-- 滚动 --> 
+                  <el-scrollbar height="300px">
+                    <p
+                      v-for="item in 20"
+                      :key="item"
+                      class="scrollbar-demo-item"
+                    >
+                      {{ item }}
+                    </p>
+                  </el-scrollbar>
 
                   <template #footer>
                     <span class="dialog-footer">
-                      <el-button @click="dialogFormVisible = false"
+                      <el-button
+                        @click="dialogFormVisible = false"
+                        style="width: 130px; height: 40px"
                         >取消</el-button
                       >
                       <el-button
                         type="primary"
                         @click="dialogFormVisible = false"
+                        style="width: 130px; height: 40px; color: #fff"
+                        color="#f93684"
+                        disabled
                         >确定</el-button
                       >
                     </span>
@@ -186,11 +213,40 @@ import {
 import { defineComponent } from 'vue'
 
 import { ref, reactive } from 'vue'
-
+const input = ref('')
 const dialogTableVisible = ref(false)
 const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
-
+const cities = [
+  {
+    value: '零基础小白',
+    label: '零基础',
+  },
+  {
+    value: '0-1年学龄',
+    label: '业余初级',
+  },
+  {
+    value: '1-2年学龄',
+    label: '业余中级',
+  },
+  {
+    value: '2-4年学龄',
+    label: '业余高级',
+  },
+  {
+    value: '4-6年学龄',
+    label: '专业初级',
+  },
+  {
+    value: '6-8年学龄',
+    label: '专业中级',
+  },
+  {
+    value: '8年以上学龄',
+    label: '专业高级',
+  },
+]
 const form = reactive({
   name: '',
   region: '',
@@ -215,47 +271,47 @@ const handleChange = (value) => {
 const options = [
   {
     value: 'guide',
-    label: 'Guide',
+    label: '北京',
     children: [
       {
         value: 'disciplines',
-        label: 'Disciplines',
+        label: '朝阳',
       },
       {
         value: 'navigation',
-        label: 'Navigation',
+        label: '昌平',
       },
     ],
   },
   {
     value: 'component',
-    label: 'Component',
+    label: '河北',
     children: [
       {
         value: 'basic',
-        label: 'Basic',
+        label: '石家庄',
       },
       {
         value: 'form',
-        label: 'Form',
+        label: '邯郸',
       },
     ],
   },
   {
     value: 'resource',
-    label: 'Resource',
+    label: '山西',
     children: [
       {
         value: 'axure',
-        label: 'Axure Components',
+        label: '太原',
       },
       {
         value: 'sketch',
-        label: 'Sketch Templates',
+        label: '吕梁',
       },
       {
         value: 'docs',
-        label: 'Design Documentation',
+        label: '临汾',
       },
     ],
   },
@@ -306,5 +362,16 @@ const options = [
   width: 100%;
   display: flex;
   justify-content: center;
+}
+.scrollbar-demo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 4px;
+  background: var(--el-color-primary-light-9);
+  color: var(--el-color-primary);
 }
 </style>

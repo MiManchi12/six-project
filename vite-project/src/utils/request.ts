@@ -1,6 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
 
-
 /* 定义response对象的data接口 */
 interface ResponseData<T> {
     code: number;
@@ -24,9 +23,13 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
     (response: AxiosResponse<ResponseData<any>>) => {
+<<<<<<< HEAD
         
         return response
         
+=======
+        return response.data
+>>>>>>> 61009bebd8c3d7d4e16db362ec7385b1be8fc673
     },
     (error) => {
         return Promise.reject(error)

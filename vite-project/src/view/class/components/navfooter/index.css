@@ -1,0 +1,15 @@
+.navHeader {
+    width: 1200px;
+    overflow: visible;
+    margin-top: 12px;
+    margin: 12px auto;
+}
+
+.navHot {
+    margin-right: 35px;
+}
+
+.navHeaderCard {
+    width: 1200px;
+    margin: 0 auto;
+}

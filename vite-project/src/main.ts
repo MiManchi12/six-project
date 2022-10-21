@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, } from 'vue'
 import App from './App.vue'
-//import pinia from './stores'
+import pinia from './store'
 import router from './router/index'
 import Header from './components/Header/Header.vue'
 import Footer from './components/Footer/index.vue'
@@ -14,6 +14,7 @@ import 'element-plus/dist/index.css'
 // 导入视频组件
 import "vue3-video-play/dist/style.css";
 import  vue3VideoPlay from "vue3-video-play";
+<<<<<<< HEAD
 //引入pinia
 import { createPinia } from 'pinia'
 // import Vue from 'vue'
@@ -23,6 +24,8 @@ import { createPinia } from 'pinia'
 //全局组件:组件名字   第二个参数：组件
 
 // Vue.component(Footer.name,Footer);
+=======
+>>>>>>> 61009bebd8c3d7d4e16db362ec7385b1be8fc673
 
 
 const app = createApp(App)
@@ -30,7 +33,9 @@ app.component('Header', Header)
 app.component('Footer', Footer)
 app.component('VideoCard', VideoCard)
 //挂载
-app.use(router).use(vue3VideoPlay)
+app.use(router)
+.use(pinia)
+.use(vue3VideoPlay)
 .use(ElementPlus,{
     locale: zhCn,
 })
