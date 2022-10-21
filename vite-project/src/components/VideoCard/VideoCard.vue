@@ -4,7 +4,7 @@
             <div class="VideoList">
                 <div class="videoItemWrap">
                     <div class="videoItemContent" v-for="(item,index) in props.content" :key="item.id">
-                        <div class="videoItem" @click="">
+                        <div class="videoItem" @click="toPlay(item,index)">
                             <div class="coverWrap">
                                 <div class="cover">
                                     <img src="../../assets/images/home_img_ycpc.png" alt="" class="coverClass"
@@ -87,16 +87,17 @@
 <script setup lang="ts">
 import moment from 'moment'
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useHomeStore } from '@/store/home'
-
+const router = useRouter()
 const HomeStore = useHomeStore()
-const pageNum = ref(1);
+const pageNum = ref(0);
 const localCache = ref(20)
 const column = ref('')
 let props = defineProps(['content'])
 let MoreLoading = ref(false)
 const path = useRoute().path
+
 //浏览器滚动的事件函数
 const windowScrollListener = () => {
     //获取操作元素最顶端到页面顶端的垂直距离
@@ -114,7 +115,7 @@ const windowScrollListener = () => {
     }
 }
 
-const loadMore = async() => {
+const loadMore = async () => {
     if (path === "/home/recommend") {
         column.value = 'recommend';
         pageNum.value++;
@@ -124,24 +125,51 @@ const loadMore = async() => {
         MoreLoading.value = false;
     }
     else if (path === "/home/original") {
+        column.value = 'original';
+        pageNum.value++;
         MoreLoading.value = true;
-        
+        await HomeStore.GetOriginalList({ column: column.value, pageNum: pageNum.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/course") {
+        column.value = 'course';
+        pageNum.value++;
         MoreLoading.value = true;
-        
+        await HomeStore.GetCourseList({ column: column.value, pageNum: pageNum.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/specialTopic") {
+        column.value = 'specialTopic';
+        pageNum.value++;
         MoreLoading.value = true;
-        
+        await HomeStore.GetSpecialTopicList({ column: column.value, pageNum: pageNum.value })
+        MoreLoading.value = false;
+
     }
     else if (path === "/home/information") {
+        column.value = 'frontDynamic';
+        pageNum.value++;
         MoreLoading.value = true;
-        
+        await HomeStore.GetInformationList({ column: column.value, pageNum: pageNum.value })
+        MoreLoading.value = false;
+
     }
-    
+
 }
-onMounted(()=>{
+
+const toPlay = (item, index) => {
+    let source = path.split('/')[2]
+    if (path.indexOf('information') != -1) {
+        let resourceId = 'frontDynamic'
+        router.push(`/detail/video?momentId=${item.id}&source=avocation&index=${index}&resourceId=${resourceId}`)
+    } else {
+        router.push(`/detail/video?momentId=${item.id}&source=${source}&index=${index}`)
+    }
+}
+
+onMounted(() => {
     window.addEventListener('scroll', windowScrollListener);
 })
 </script>
@@ -209,6 +237,10 @@ onMounted(()=>{
             border-top-right-radius: 4px;
             overflow: hidden;
             cursor: pointer;
+
+            :hover {
+                opacity: .4
+            }
 
             .coverClass {
                 position: absolute;

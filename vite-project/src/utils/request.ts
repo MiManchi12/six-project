@@ -22,12 +22,11 @@ request.interceptors.response.use(
   (response: AxiosResponse<ResponseData<any>>) => {
 
 
-        return response.data
-    
-    },
-    (error) => {
-        return Promise.reject(error)
-    }
+    return response.data
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
 )
 
 export default request

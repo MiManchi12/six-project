@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-loading="Loading" element-loading-text="Loading...">
-            <VideoCard :content="HomeStore.content"></VideoCard>
+            <VideoCard :content="HomeStore.recommendcontent"></VideoCard>
         </div>
     </div>
 </template>
@@ -9,10 +9,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useHomeStore } from '../../../store/home'
-
 const HomeStore = useHomeStore()
 let Loading = ref(false)
-
 onMounted(() => {
     getRecommend()
 })

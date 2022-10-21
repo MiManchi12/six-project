@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 //引入仓库
 import { useUserInfoStore } from '../../store/userInfo';
 //引入发请求函数
@@ -72,7 +72,9 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import { getToken } from "../../utils/token-utils";
 //使用仓库
 const userInfoStore = useUserInfoStore();
-console.log(userInfoStore.token)
+// console.log(userInfoStore.token)
+const Route = useRoute()
+
 const router = useRouter()
 // 跳转登陆
 const toLogin = () => {
