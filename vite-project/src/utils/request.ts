@@ -22,7 +22,7 @@ request.interceptors.response.use(
   (response: AxiosResponse<ResponseData<any>>) => {
     
 
-    return response
+    return response.data
   },
   (error) => {
     return Promise.reject(error)

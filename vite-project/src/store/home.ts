@@ -21,6 +21,7 @@ export const useHomeStore = defineStore('home', {
                 localCache
             }
             let result = await reqGetRecommendList(params)
+            console.log(result)
             this.recommendcontent = this.recommendcontent.concat(result.content)
             this.originalcontent = []
             this.coursecontent = []
