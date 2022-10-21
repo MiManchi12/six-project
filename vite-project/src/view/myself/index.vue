@@ -21,7 +21,7 @@
             />
             <div class="name_container">
               <p style="margin: 0">
-                {{ selfData.account ? selfData.account : '用户名' }}
+                {{ selfData?.account ? selfData?.account : '用户名' }}
               </p>
               <div class="level_box">
                 <img src="./images/level_Lv.@3x.png" alt="" />
@@ -69,7 +69,7 @@
             <el-menu class="el-menu-vertical-demo" background-color="#fff">
               <el-sub-menu>
                 <template #title>
-                  <span class="navigation-item">我卖的</span>
+                  <span>我卖的</span>
                 </template>
                 <el-menu-item index="1-1" class="navigation-item"
                   >订单管理</el-menu-item
@@ -100,7 +100,9 @@
             :body-style="{ padding: '5px 0' }"
             class="navigation-block"
           >
-            <router-link to="/center/edit_info" class="navigation-item"
+            <router-link
+              to="/center/edit_info"
+              class="navigation-item"
               >我的资料</router-link
             >
           </el-card>
@@ -128,7 +130,7 @@ import {
   Plus,
   UploadFilled,
 } from '@element-plus/icons-vue'
-import { reqMySelfData } from '../../api/myself'
+import { reqMySelfData } from '../../api/myself/userInfo/userInfo'
 import { ref, onMounted } from 'vue'
 onMounted(() => {
   getMySelfData()

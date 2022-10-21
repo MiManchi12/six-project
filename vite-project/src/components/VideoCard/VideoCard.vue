@@ -3,8 +3,8 @@
         <div class="videoContainer">
             <div class="VideoList">
                 <div class="videoItemWrap">
-                    <div class="videoItemContent">
-                        <div class="videoItem" v-for="(item,index) in props.content" :key="item.id" @click="">
+                    <div class="videoItemContent"  v-for="(item,index) in props.content" :key="item.id" >
+                        <div class="videoItem" @click="">
                             <div class="coverWrap">
                                 <div class="cover">
                                     <img src="../../assets/images/home_img_ycpc.png" alt="" class="coverClass"
@@ -85,7 +85,7 @@
 <script setup lang="ts">
 import moment from 'moment'
 let props = defineProps(['content'])
-console.log(moment(1613318399051).format('MMMM Do YYYY, h:mm:ss'))
+
 </script>
 
 <style lang="less" scoped>
@@ -202,6 +202,10 @@ console.log(moment(1613318399051).format('MMMM Do YYYY, h:mm:ss'))
                     width: 24px;
                     height: 16px;
                     vertical-align: bottom;
+                    img{
+                        width:26px;
+                        height:16px;
+                    }
                 }
 
             }
@@ -261,6 +265,7 @@ console.log(moment(1613318399051).format('MMMM Do YYYY, h:mm:ss'))
                 width: 24px;
                 height: 24px;
                 position: relative;
+                border-radius:50%;
             }
 
             span {

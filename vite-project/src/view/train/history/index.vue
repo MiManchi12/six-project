@@ -12,12 +12,12 @@
                         :prefix-icon="Search" />
                 </div>
                 <el-button size="large" @click="" color="#e6e6eb" style="margin-left: 10px;">搜索</el-button>
-                <span class="cont" @click="delete">批量删除</span>
-                <!-- <div class="cancel">
-                    <span>取消</span>
+                <button class="cont" @click="del=0" v-show="del==0">批量删除</button>
+                <div class="cancel" v-show="del==1">
+                    <span @click="del=1">取消</span>
                     <span>全选</span>
                     <span>删除</span>
-                </div> -->
+                </div>
             </div>
             <!-- 中心内容区 -->
             <div class="noMore">
@@ -41,12 +41,6 @@
                 </div>
             </div>
             <div></div>
-            <!-- 分页器 -->
-            <!-- <div class="pagination">
-
-            </div>
-            <el-pagination layout="->,prev, pager, next" :total="50" /> -->
-
         </div>
     </div>
 </template>
@@ -64,6 +58,8 @@ import { reqHistory } from '../../../api/train/history/history'
 const historyList = ref([])
 // 时间
 let time = ref([])
+// 删除
+let del = ref(0)
 // 组件挂载请求
 onMounted(() => {
     getHistory()

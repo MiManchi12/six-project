@@ -15,6 +15,15 @@ import 'element-plus/dist/index.css'
 import "vue3-video-play/dist/style.css";
 import  vue3VideoPlay from "vue3-video-play";
 
+// import Vue from 'vue'
+// // 定义全局组件
+// import Header from './components/Header/index.vue'
+// import Footer from './components/Footer/index.vue'
+//全局组件:组件名字   第二个参数：组件
+
+// Vue.component(Footer.name,Footer);
+
+
 
 const app = createApp(App)
 app.component('Header', Header)

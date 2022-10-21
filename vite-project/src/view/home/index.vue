@@ -1,37 +1,54 @@
 <template>
 	<div class="homeWrapper">
 		<Header></Header>
+		<!-- 轮播图 -->
 		<div class="Carousel">
 			<el-carousel :interval="3000" height="460px">
-				<el-carousel-item v-for="item in 5" :key="item">
-					<img src="https://rs.dance365.com/photo/1644459379211.jpg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+				<el-carousel-item>
+					<img src="https://rs.dance365.com/photo/1666231089711.jpeg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
 						alt="" style="width:1200px; height:460px">
-					<h3 text="2xl" justify="center">{{ item }}</h3>
 				</el-carousel-item>
-			</el-carousel>
+				<el-carousel-item>
+						<img src="https://rs.dance365.com/photo/1665720633949.jpeg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+							alt="" style="width:1200px; height:460px">
+				</el-carousel-item>
+				<el-carousel-item>
+						<img src="https://rs.dance365.com/photo/1664531134723.jpg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+							alt="" style="width:1200px; height:460px">
+				</el-carousel-item>
+				<el-carousel-item>
+						<img src="https://rs.dance365.com/photo/1644459379211.jpg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+							alt="" style="width:1200px; height:460px">
+				</el-carousel-item>
+				<el-carousel-item>
+						<img src="https://rs.dance365.com/photo/1644459406488.jpg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+							alt="" style="width:1200px; height:460px">
+				</el-carousel-item>
+				<el-carousel-item>
+						<img src="https://rs.dance365.com/photo/1644459452660.jpg?imageView2/0/w/2000/h/1200/format/webp/ignore-error/1"
+							alt="" style="width:1200px; height:460px">
+				</el-carousel-item>
+				</el-carousel>
 		</div>
 		<!-- 导航 -->
 		<div class="nav-container">
 			<div class="nav">
 				<div style="margin-left:335px;">
-					<router-link to="/home/resource/recommend" active-class="active">
-						推荐
-					</router-link>
-					<router-link to="/home/resource/original" active-class="active">作品</router-link>
-					<router-link to="/home/resource/course" active-class="active">教程</router-link>
-					<router-link to="/home/resource/specialTopic" active-class="active">专题</router-link>
-					<router-link to="/home/resource/information" active-class="active">动态</router-link>
-					<router-link to="/home/resource/attention" active-class="active">关注</router-link>
+					<router-link to="/home/recommend" active-class="active">推荐</router-link>
+					<router-link to="/home/original" active-class="active">作品</router-link>
+					<router-link to="/home/course" active-class="active">教程</router-link>
+					<router-link to="/home/specialTopic" active-class="active">专题</router-link>
+					<router-link to="/home/information" active-class="active">动态</router-link>
+					<router-link to="/home/attention" active-class="active">关注</router-link>
 				</div>
-				<div class="hobbies" @click="dialogVisible  = true">
+				<div class="hobbies" @click="dialogVisible = true">
 					<el-icon style="vertical-align: -20%">
 						<Grid />
 					</el-icon>
 					<span>选择兴趣技能</span>
 				</div>
 				<el-dialog v-model="dialogVisible" title="选择我的兴趣技能" width="900px">
-					<el-input class="search" placeholder="搜索兴趣技能" :prefix-icon="Search"
-						 clearable />
+					<el-input class="search" placeholder="搜索兴趣技能" :prefix-icon="Search" clearable />
 					<el-button class="search-btn" type="primary">
 						搜索</el-button>
 					<el-form label-position="left" label-width="auto" class="mt-60">
@@ -41,14 +58,12 @@
 					</el-form>
 					<div class="text">
 						推荐兴趣技能
-						<span class="span">&nbsp;&nbsp;&nbsp;( {{  }}/7 )</span>
+						<span class="span">&nbsp;&nbsp;&nbsp;( {{ }}/7 )</span>
 					</div>
 					<el-form>
 						<div class="hobbylist">
 							<el-checkbox-group :max="7">
-								<el-checkbox 
-								size="large" 
-								class="checkbox" border />
+								<el-checkbox size="large" class="checkbox" border />
 							</el-checkbox-group>
 						</div>
 					</el-form>
@@ -61,7 +76,7 @@
 				</el-dialog>
 			</div>
 		</div>
-		<VideoCard></VideoCard>
+		<router-view></router-view>
 		<Footer></Footer>
 
 	</div>
@@ -71,11 +86,14 @@
 
 
 <script lang="ts" setup>
-import { Grid, Search } from '@element-plus/icons'
-import { ref } from 'vue'
+// 引入el-icon图标
+import { Grid, Search } from '@element-plus/icons';
+import { ref } from 'vue';
 
 //展示hobby模态框
-const dialogVisible = ref(false)
+const dialogVisible = ref(false);
+
+
 </script>
 <style scoped>
 .Carousel {
