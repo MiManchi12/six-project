@@ -20,7 +20,7 @@ export const useHomeStore = defineStore('home', {
             this.content = result.data.content
 
 
-        }
+        },
     }
 
 })
