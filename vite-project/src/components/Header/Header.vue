@@ -72,7 +72,7 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import { getToken } from "../../utils/token-utils";
 //使用仓库
 const userInfoStore = useUserInfoStore();
-console.log(userInfoStore.token)
+// console.log(userInfoStore.token)
 const router = useRouter()
 // 跳转登陆
 const toLogin = () => {
