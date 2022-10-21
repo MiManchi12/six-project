@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, } from 'vue'
 import App from './App.vue'
-//import pinia from './stores'
+import pinia from './store'
 import router from './router/index'
 import Header from './components/Header/Header.vue'
 import Footer from './components/Footer/index.vue'
@@ -21,7 +21,9 @@ app.component('Header', Header)
 app.component('Footer', Footer)
 app.component('VideoCard', VideoCard)
 //挂载
-app.use(router).use(vue3VideoPlay)
+app.use(router)
+.use(pinia)
+.use(vue3VideoPlay)
 .use(ElementPlus,{
     locale: zhCn,
 })

@@ -15,43 +15,58 @@ const routers = [
         name: 'Register',
         component: () => import('../view/register/index.vue')
     },
-    // 课程
-    {
-        path: '/class',
-        name: 'Class',
-        component: () => import('../view/class/index.vue'),
-        children: [
-            
-            {
-                path:'video',
-                component: () => import('../view/class/video/index.vue'),
-                meta: {
-                    title: '视频课',
-                }
-            },
-            {
-                path: 'live',
-                component: () => import('../view/class/live/index.vue'),
-                meta: {
-                    title: '直播课',
-                }
-            },
-            {
-                path: 'offline',
-                component: () => import('../view/class/offline/index.vue'),
-                meta: {
-                    title: '线下课',
-                }
-            },
-            {
-                path: 'subject',
-                component: () => import('../view/class/subject/index.vue'),
-                meta: {
-                    title: '主题',
-                }
-            },
-        ]
-    },
+ // 课程
+ {
+    path: '/class',
+    name: 'Class',
+    component: () => import('../view/class/index.vue'),
+    redirect:'/class/vip',
+    children: [
+        {
+            path: 'vip',
+            component: () => import('../view/class/vip/index.vue'),
+            meta: {
+                title: '会员专区',
+            }
+        },
+        {
+            path: 'video',
+            component: () => import('../view/class/video/index.vue'),
+            meta: {
+                title: '视频课',
+            }
+        },
+        {
+            path: 'live',
+            component: () => import('../view/class/live/index.vue'),
+            meta: {
+                title: '直播课',
+            }
+        },
+        {
+            path: 'offline',
+            component: () => import('../view/class/offline/index.vue'),
+            meta: {
+                title: '线下课',
+            }
+        },
+        {
+            path: 'subject',
+            component: () => import('../view/class/subject/index.vue'),
+            meta: {
+                title: '主题',
+            }
+        },
+        {
+            path: 'product',
+            component: () => import('../view/class/product/index.vue'),
+            meta: {
+                title: '产品',
+            }
+        },
+        
+    ]
+},
     // 我的
     {
         path: '/myself',

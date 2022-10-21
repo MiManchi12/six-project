@@ -8,20 +8,20 @@ interface ResponseData<T> {
 }
 
 // 配置新建一个新的axios实例
-const service = axios.create({
+let request = axios.create({
     baseURL: '/api',
     timeout: 50000,
 })
 
 // 添加请求拦截器
-service.interceptors.request.use(
+request.interceptors.request.use(
     (config: any) => {
 
         return config
     }
 )
 // 添加响应拦截器
-service.interceptors.response.use(
+request.interceptors.response.use(
     (response: AxiosResponse<ResponseData<any>>) => {
         return response.data
     },
@@ -30,4 +30,4 @@ service.interceptors.response.use(
     }
 )
 
-export default service
+export default request
