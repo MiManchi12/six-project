@@ -14,9 +14,7 @@
 		<div class="nav-container">
 			<div class="nav">
 				<div style="margin-left:335px;">
-					<router-link to="/home/resource/recommend" active-class="active">
-						推荐
-					</router-link>
+					<router-link to="/home/resource/recommend" active-class="active">推荐</router-link>
 					<router-link to="/home/resource/original" active-class="active">作品</router-link>
 					<router-link to="/home/resource/course" active-class="active">教程</router-link>
 					<router-link to="/home/resource/specialTopic" active-class="active">专题</router-link>
