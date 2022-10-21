@@ -9,7 +9,7 @@ interface ResponseData<T> {
 
 // 配置新建一个新的axios实例
 let request = axios.create({
-    baseURL: '/apis',
+    baseURL: '/api',
     timeout: 50000,
 })
 
