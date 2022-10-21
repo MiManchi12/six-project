@@ -10,15 +10,15 @@ export default defineConfig({
     port: 3000,
     //配置代理跨域
     proxy: {
-      '/dev-api': {
+      '/api': {
         target: 'https://www.dance365.com/apis',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/app-log': {
         target: "http://gmall-h5-api.atguigu.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/app-log/, '')
+        rewrite: (path) => path.replace(/^\/app-log/,'')
       },
     }
   }
