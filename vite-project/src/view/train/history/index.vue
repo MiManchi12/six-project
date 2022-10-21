@@ -143,6 +143,7 @@ const input2 = ref('')
     .r-content {
         width: 1020px;
         // height: 730px;
+        min-height: 600px;
         overflow: hidden;
         background-color: #fff;
         border-radius: 4px;
