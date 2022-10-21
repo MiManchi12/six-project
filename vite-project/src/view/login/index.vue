@@ -8,11 +8,12 @@
                         <form action="##">
                             <!-- 账号 -->
                             <div class="input-text clearFix">
-                                <el-input v-model="input" placeholder="邮箱/用户名/手机号" />
+                                <el-input v-model="loginForm.phone" placeholder="邮箱/用户名/手机号" />
                             </div>
                             <!-- 密码 -->
                             <div class="input-text clearFix">
-                                <el-input v-model="input" type="password" placeholder="请输入密码" show-password />
+                                <el-input v-model="loginForm.password" type="password" placeholder="请输入密码"
+                                    show-password />
                             </div>
                             <div class="setting clearFix">
                                 <label class="checkbox inline">
@@ -36,34 +37,28 @@
     </div>
 </template>
   
-<script>
-//   export default {
-//     name: "Login",
-//     data() {
-//       return {
-//         phone: "18235508649",
-//         password: "123123",
-//       };
-//     },
-//     methods: {
-//       //点击登录按钮：进行登录请求
-//       async login() {
-//         //整理参数
-//         const { phone, password } = this;
-//         //派发action:进行登录
-//         try {
-//           //登录成功,跳转到首页
-//           await this.$store.dispatch("userLogin", { phone, password });
-//           //将来这里代码需要修改****
-//           //获取地址栏顶部的query参数
-//           let redirect = this.$route.query.redirect;
-//           this.$router.push(redirect || "/home");
-//         } catch (error) {
-//           alert(error.message);
-//         }
-//       },
-//     },
-//   };
+<script lang="ts" setup>
+//引入仓库
+import { useUserInfoStore } from '../../store/userInfo';
+//引入组合式API
+import { ref } from 'vue';
+//引入路由
+import { useRoute, useRouter } from 'vue-router'
+//使用仓库
+const userInfoStore = useUserInfoStore();
+const route = useRoute()
+const router = useRouter()
+const loginForm = ref({
+    phone: '18235508649',
+    password: '123123'
+})
+// 点击登录的回调
+const login = async () => {
+    const { phone, password } = loginForm.value
+    //通知仓库发请求
+    await userInfoStore.login(phone, password);
+    router.push({ path: '/home' })
+}
 </script>
   
 <style lang="less" scoped>

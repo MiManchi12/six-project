@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from 'axios'
 import 'nprogress/nprogress.css'
 import { v4 as uuidv4 } from "uuid"
@@ -16,6 +17,34 @@ function getUserTempId() {
 	if (!userTempId) {
 		userTempId = uuidv4()
 		localStorage.setItem('USERTEMPID_S2', userTempId)
+=======
+import axios, { type AxiosResponse } from 'axios';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import pinia from '../store/index';
+import { useUserInfoStore } from '../store/userInfo';
+
+
+/* 定义response对象的data接口 */
+interface ResponseData<T> {
+	code: number;
+	data: T;
+	message: string;
+}
+
+// 配置新建一个 axios 实例
+const service = axios.create({
+	baseURL: 'apilogin',
+	timeout: 50000,
+});
+
+// 添加请求拦截器
+service.interceptors.request.use(
+	(config:any) => {
+		if(useUserInfoStore().token){
+			
+		}
+		return config;
+>>>>>>> rkp
 	}
 	return userTempId
 }
