@@ -18,7 +18,7 @@ export default defineConfig({
       '/app-log': {
         target: "http://gmall-h5-api.atguigu.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/app-log/,'')
+        rewrite: (path) => path.replace(/^\/app-log/, '')
       },
     }
   }
