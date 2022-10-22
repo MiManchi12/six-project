@@ -14,6 +14,9 @@ import 'element-plus/dist/index.css'
 // 导入视频组件
 import "vue3-video-play/dist/style.css";
 import  vue3VideoPlay from "vue3-video-play";
+import {createPinia} from 'pinia'
+import pinia from './store'
+
 
 // import Vue from 'vue'
 // // 定义全局组件
@@ -24,6 +27,7 @@ import  vue3VideoPlay from "vue3-video-play";
 // Vue.component(Footer.name,Footer);
 
 
+
 const app = createApp(App)
 app.component('Header', Header)
 app.component('Footer', Footer)
@@ -32,6 +36,6 @@ app.component('VideoCard', VideoCard)
 app.use(router).use(vue3VideoPlay)
 .use(ElementPlus,{
     locale: zhCn,
-})
+}).use(pinia)
 .mount('#app')
 

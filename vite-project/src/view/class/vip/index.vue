@@ -4,13 +4,8 @@
     <topNav></topNav>
     <navChose></navChose>
     <navFooter></navFooter>
-    <div class="content">
-      <a href="">
-        <img src="" alt="" style="width:124px height:125px" />
-      </a>
-      <span>yuanchuang</span>
-      <span></span>
-    </div>
+ 
+   
     <Footer></Footer>
   </div>
 </template>
@@ -21,6 +16,7 @@ import navFooter from "../components/navfooter/index.vue";
 import Title from "../components/title/index.vue";
 import "./index.css";
 import Header from "../../../components/Header/Header.vue";
+
 </script>
 <style scoped>
 </style>

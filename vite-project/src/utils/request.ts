@@ -17,7 +17,6 @@ let request = axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(
     (config: any) => {
-
         return config
     }
 )
@@ -25,8 +24,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
     (response: AxiosResponse<ResponseData<any>>) => {
         const res = response.data
-
-        return res.data
+        return res
     },
     (error) => {
         return Promise.reject(error)
