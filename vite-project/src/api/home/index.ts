@@ -10,3 +10,5 @@ export const reqGetSpecialTopicList = (params) => request.post('/moment/moments/
 // 动态
 export const reqGetInformationList = (params) => request.get('/moment/moments/frontDynamic/default', { params })
 
+// 
+export const reqGetInterest =()=>request.get('/avocation/avocations/rec/user?access_token=c494ae44-3adc-48ca-8749-5128a53358d7&pageNum=0&pageSize=20')
