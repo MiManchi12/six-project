@@ -4,8 +4,8 @@
     <topNav></topNav>
     <navChose></navChose>
     <navFooter></navFooter>
- 
-   
+
+
     <Footer></Footer>
   </div>
 </template>
@@ -15,23 +15,11 @@ import topNav from "../components/topnav/index.vue";
 import navFooter from "../components/navfooter/index.vue";
 import Title from "../components/title/index.vue";
 import "./index.css";
-import Header from "../../../components/Header/Header.vue";
-<<<<<<< HEAD
-import {onMounted} from 'vue'
-import {reqVip} from '../../../api/class/class' 
+import { onMounted } from 'vue'
 
-onMounted(()=>{
-  get()
-})
-const get = async()=>{
-    let result = await reqVip()
-    
 
-}
-=======
-
->>>>>>> fxs
 </script>
 <style scoped>
+
 </style>
 

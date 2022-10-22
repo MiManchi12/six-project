@@ -5,11 +5,11 @@
     <Header></Header>
     <div class="nav">
       <div class="navitem">
-        <router-link class="border" to="/class/vip">会员专区</router-link>
-        <router-link to="/class/video">视频课</router-link>
-        <router-link to="/class/live">直播课</router-link>
-        <router-link to="/class/offline">线下课</router-link>
-        <router-link to="/class/subject">主题</router-link>
+        <router-link :class="route.path.includes('vip')?'border':''" to="/class/vip">会员专区</router-link>
+        <router-link :class="route.path.includes('video')?'border':''" to="/class/video">视频课</router-link>
+        <router-link :class="route.path.includes('live')?'border':''" to="/class/live">直播课</router-link>
+        <router-link :class="route.path.includes('offline')?'border':''" to="/class/offline">线下课</router-link>
+        <router-link :class="route.path.includes('subject')?'border':''" to="/class/subject">主题</router-link>
       </div>
     </div>
   </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 
 <style lang="less">
