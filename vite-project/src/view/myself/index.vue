@@ -11,17 +11,15 @@
             class="base-info"
           >
             <img
+              v-if="selfData.avatar"
               class="avatar"
-              :src="
-                selfData
-                  ? 'https://rs.dance365.com/photo/1665407918106_rs_1666251573200'
-                  : './images/default.png'
-              "
+              :src="selfData.avatar"
               alt=""
             />
+            <img v-else class="avatar" src="./images/default.png" alt="" />
             <div class="name_container">
               <p style="margin: 0">
-                {{ selfData?.account ? selfData?.account : '用户名' }}
+                {{ selfData.account ? selfData.account : '用户名' }}
               </p>
               <div class="level_box">
                 <img src="./images/level_Lv.@3x.png" alt="" />
@@ -100,9 +98,7 @@
             :body-style="{ padding: '5px 0' }"
             class="navigation-block"
           >
-            <router-link
-              to="/center/edit_info"
-              class="navigation-item"
+            <router-link to="/center/edit_info" class="navigation-item"
               >我的资料</router-link
             >
           </el-card>
@@ -140,7 +136,6 @@ const getMySelfData = async () => {
   let result = await reqMySelfData()
   selfData.value = result
 }
-console.log(selfData)
 </script>
 
 <style scoped>

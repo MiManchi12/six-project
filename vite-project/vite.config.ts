@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -19,7 +18,7 @@ export default defineConfig({
       '/api': {
         target: 'https://www.dance365.com/apis',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/app-log': {
         target: "http://gmall-h5-api.atguigu.cn",

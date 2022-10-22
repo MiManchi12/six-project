@@ -7,8 +7,8 @@
                 <div class="detailContainer">
                     <!-- 播放器窗口 -->
                     <div class="playContainer">
-                        <vue3VideoPlay width="1060px" height="595px" :src="options.src" :type="options.type" :poster="options.poster"
-                            :autoPlay="false">
+                        <vue3VideoPlay width="1060px" height="595px" :src="options.src" :type="options.type"
+                            :poster="options.poster" :autoPlay="true">
                         </vue3VideoPlay>
                     </div>
                     <!-- 播放量评论收藏 -->
@@ -20,7 +20,7 @@
                                     d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
                                     p-id="7078" fill="#cdcdcd"></path>
                             </svg>
-                            <span>459</span>
+                            <span>{{videoList.videoItem.statisticsBackup.viewCount}}</span>
                         </div>
                         <div class="enjoyCount">
                             <svg t="1666175863741" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -29,7 +29,7 @@
                                     d="M857.28 344.992h-264.832c12.576-44.256 18.944-83.584 18.944-118.208 0-78.56-71.808-153.792-140.544-143.808-60.608 8.8-89.536 59.904-89.536 125.536v59.296c0 76.064-58.208 140.928-132.224 148.064l-117.728-0.192A67.36 67.36 0 0 0 64 483.04V872c0 37.216 30.144 67.36 67.36 67.36h652.192a102.72 102.72 0 0 0 100.928-83.584l73.728-388.96a102.72 102.72 0 0 0-100.928-121.824zM128 872V483.04c0-1.856 1.504-3.36 3.36-3.36H208v395.68H131.36A3.36 3.36 0 0 1 128 872z m767.328-417.088l-73.728 388.96a38.72 38.72 0 0 1-38.048 31.488H272V476.864a213.312 213.312 0 0 0 173.312-209.088V208.512c0-37.568 12.064-58.912 34.72-62.176 27.04-3.936 67.36 38.336 67.36 80.48 0 37.312-9.504 84-28.864 139.712a32 32 0 0 0 30.24 42.496h308.512a38.72 38.72 0 0 1 38.048 45.888z"
                                     p-id="5872" fill="#cdcdcd"></path>
                             </svg>
-                            <span>10</span>
+                            <span>{{videoList.videoItem.statisticsBackup.praiseCount}}</span>
                         </div>
                         <div class="favoriteCount">
                             <svg t="1666175965858" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -38,7 +38,7 @@
                                     d="M335.008 916.629333c-35.914667 22.314667-82.88 10.773333-104.693333-25.557333a77.333333 77.333333 0 0 1-8.96-57.429333l46.485333-198.24a13.141333 13.141333 0 0 0-4.021333-12.864l-152.16-132.586667c-31.605333-27.52-35.253333-75.648-8.234667-107.733333a75.68 75.68 0 0 1 51.733333-26.752L354.848 339.2c4.352-0.362667 8.245333-3.232 10.026667-7.594667l76.938666-188.170666c16.032-39.2 60.618667-57.92 99.52-41.461334a76.309333 76.309333 0 0 1 40.832 41.461334l76.938667 188.16c1.781333 4.373333 5.674667 7.253333 10.026667 7.605333l199.712 16.277333c41.877333 3.413333 72.885333 40.458667 69.568 82.517334a76.938667 76.938667 0 0 1-26.08 51.978666l-152.16 132.586667c-3.541333 3.082667-5.141333 8.074667-4.021334 12.853333l46.485334 198.24c9.621333 41.013333-15.36 82.336-56.138667 92.224a75.285333 75.285333 0 0 1-57.525333-9.237333l-170.976-106.24a11.296 11.296 0 0 0-12.010667 0l-170.986667 106.24zM551.786667 756.032l170.976 106.24c2.624 1.621333 5.717333 2.122667 8.650666 1.408 6.410667-1.557333 10.56-8.426667 8.928-15.424l-46.485333-198.24a77.141333 77.141333 0 0 1 24.277333-75.733333L870.293333 441.706667c2.485333-2.165333 4.053333-5.312 4.330667-8.746667 0.565333-7.136-4.490667-13.173333-10.976-13.696l-199.712-16.288a75.989333 75.989333 0 0 1-64.064-47.168l-76.938667-188.16a12.309333 12.309333 0 0 0-6.538666-6.741333c-5.898667-2.496-12.725333 0.373333-15.328 6.741333l-76.949334 188.16a75.989333 75.989333 0 0 1-64.064 47.168l-199.701333 16.288a11.68 11.68 0 0 0-7.978667 4.181333 13.226667 13.226667 0 0 0 1.333334 18.261334l152.16 132.586666a77.141333 77.141333 0 0 1 24.277333 75.733334l-46.485333 198.229333a13.333333 13.333333 0 0 0 1.514666 9.877333c3.488 5.792 10.581333 7.530667 16.064 4.128l170.986667-106.229333a75.296 75.296 0 0 1 79.562667 0z"
                                     p-id="8102" fill="#cdcdcd"></path>
                             </svg>
-                            <span>20</span>
+                            <span>{{videoList.videoItem.statisticsBackup.favoriteCount}}</span>
                         </div>
                         <!-- 右侧资源下载 -->
                         <div class="sub-container-right">
@@ -162,7 +162,7 @@
                     <div class="title-container">
                         <p class="main-title">
                             <img src="../../assets/images/landing_img_original@2x.png" alt="" width="40" height="24">
-                            原创藏族舞《轻》
+                            {{videoList.videoItem.title}}
                         </p>
                     </div>
                     <div class="practise-btn">
@@ -174,10 +174,10 @@
                     <div class="avatar-name-container">
                         <div class="creator">
                             <div class="avatar-img">
-                                <img src="../../assets/images/avatar.jpg" alt="">
+                                <img :src="videoList.videoItem.creatorBackup.avatar" alt="">
                             </div>
                             <div class="text_area">
-                                <span class="user-name">陈晓晓琳</span>
+                                <span class="user-name">{{videoList.videoItem.creatorBackup.name}}</span>
                                 <img src="../../assets/images/vip.png" alt="" class="vip">
                                 <span class="user-level">
                                     <img src="../../assets/images/level_Lv.@3x.png" alt="" class="level_lv">
@@ -189,17 +189,16 @@
                     <div class="follow-btn">
                         + 关注
                     </div>
-                    <span class="light-time">发布时间：10-17</span>
+                    <span class="light-time">发布时间：{{moment(videoList.videoItem.createTime).format('MM-DD')}}</span>
                 </div>
                 <!-- 详情 -->
                 <div class="pre-container">
-                    <pre class="summary-container" :class="foldToggle===true?'folded':''">原创舞蹈《折枝花满衣》
-音乐：折枝花满衣
-拍摄：熊
-编表：陈晓琳</pre>
+                    <pre class="summary-container"
+                        :class="foldToggle===true?'folded':''">{{videoList.videoItem.summary?videoList.videoItem.summary:videoList.videoItem.title}}</pre>
                     <div class="fold-toggle-container" :class="foldToggle===true?'fold  ':''">
                         <div class="linear-gradient-container"></div>
-                        <span class="foldToggle" @click="foldToggle=!foldToggle">
+                        <span class="foldToggle" @click="foldToggle=!foldToggle"
+                            v-show="videoList.videoItem.summary.split('\n').length > 3&&videoList.videoItem.summary!==null">
                             {{foldToggle?'展开':'收起'}}
                             <svg v-show="foldToggle ===true" t="1666202787614" class="icon" viewBox="0 0 1024 1024"
                                 version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9913" width="14" height="14">
@@ -221,16 +220,16 @@
                     <div class="space"></div>
                     <div class="space">
                         <span>原创作者：</span>
-                        <span class="author">陈晓晓琳</span>
+                        <span class="author">{{videoList.videoItem.momentClassificationBackup.originAuthor}}</span>
                     </div>
 
                 </div>
                 <!-- 兴趣 -->
                 <div class="hobby-container">
                     <span>兴趣技能：</span>
-                    <span class="hobby_item">古典舞、</span>
-                    <span class="hobby_item">折枝花满衣、</span>
-                    <span class="hobby_item">陈晓琳</span>
+                    <span class="hobby_item" v-for="(tagsItem,index) in videoList.videoItem.tags"
+                        :key="index">{{tagsItem.name}}、</span>
+
                 </div>
             </div>
             <!-- 获取更多 -->
@@ -250,17 +249,18 @@
                 <div class="pannel_wrapper">
                     <div class="title">TA的相关</div>
                     <div class="card_list">
-                        <div class="card_list_item">
+                        <div class="card_list_item" v-for="(recommend,index) in videoList.videoItem.recommendMineBackup"
+                            :key="recommend.id">
                             <div class="related_suggestion">
-                                <div class="cover_wrap">
+                                <div class="cover_wrap" @click="toPlay(recommend.id,index)">
                                     <div class="cover">
                                         <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
+                                        <img :src="recommend.cover" alt="">
                                         <img src="../../assets/images/play.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
+                                    <a href="">{{recommend.title}}</a>
                                 </div>
                                 <div class="moment_detail">
                                     <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -270,79 +270,7 @@
                                             p-id="7078" fill="#cdcdcd"></path>
                                     </svg>
                                     <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_list_item">
-                            <div class="related_suggestion">
-                                <div class="cover_wrap">
-                                    <div class="cover">
-                                        <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
-                                        <img src="../../assets/images/play.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
-                                </div>
-                                <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
-                                    <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_list_item">
-                            <div class="related_suggestion">
-                                <div class="cover_wrap">
-                                    <div class="cover">
-                                        <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
-                                        <img src="../../assets/images/play.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
-                                </div>
-                                <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
-                                    <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_list_item">
-                            <div class="related_suggestion">
-                                <div class="cover_wrap">
-                                    <div class="cover">
-                                        <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
-                                        <img src="../../assets/images/play.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
-                                </div>
-                                <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
-                                    <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
+                                        {{recommend.statisticsBackup.viewCount}}</span>
                                 </div>
                             </div>
                         </div>
@@ -353,15 +281,16 @@
                     <div class="card_list">
                         <div class="card_list_item">
                             <div class="related_suggestion">
-                                <div class="cover_wrap">
+                                <div class="cover_wrap"
+                                    @click="toPlay(videoList.videoItem.recommendOtherBackup[0].id,0)">
                                     <div class="cover">
                                         <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
+                                        <img :src="videoList.videoItem.recommendOtherBackup[0].cover" alt="">
                                         <img src="../../assets/images/play.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
+                                    <a href="">{{videoList.videoItem.recommendOtherBackup[0].title}}</a>
                                 </div>
                                 <div class="moment_detail">
                                     <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -371,79 +300,66 @@
                                             p-id="7078" fill="#cdcdcd"></path>
                                     </svg>
                                     <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
+                                        {{videoList.videoItem.recommendOtherBackup[0].statisticsBackup.viewCount}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="card_list_item">
                             <div class="related_suggestion">
-                                <div class="cover_wrap">
+                                <div class="cover_wrap"
+                                    @click="toPlay(videoList.videoItem.recommendOtherBackup[1].id,1)">
                                     <div class="cover">
                                         <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
+                                        <img :src="videoList.videoItem.recommendOtherBackup[1].cover" alt="">
                                         <img src="../../assets/images/play.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
+                                    <a href="">{{videoList.videoItem.recommendOtherBackup[1].title}}</a>
                                 </div>
                                 <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
                                     <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
+                                        {{videoList.videoItem.recommendOtherBackup[1].statisticsBackup.sellCount}}人已购</span>
                                 </div>
                             </div>
                         </div>
                         <div class="card_list_item">
                             <div class="related_suggestion">
-                                <div class="cover_wrap">
+                                <div class="cover_wrap"
+                                    @click="toPlay(videoList.videoItem.recommendOtherBackup[2].id,2)">
                                     <div class="cover">
                                         <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
+                                        <img :src="videoList.videoItem.recommendOtherBackup[2].cover" alt="">
                                         <img src="../../assets/images/play.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
+                                    <a href="">{{videoList.videoItem.recommendOtherBackup[2].title}}</a>
                                 </div>
                                 <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
                                     <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
+                                        已报名：
+                                        {{videoList.videoItem.recommendOtherBackup[2].statisticsBackup.signupCount}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="card_list_item">
                             <div class="related_suggestion">
-                                <div class="cover_wrap">
+                                <div class="cover_wrap"
+                                    @click="toPlay(videoList.videoItem.recommendOtherBackup[3].id,3)">
                                     <div class="cover">
                                         <!-- 图片 -->
-                                        <img src="../../assets/images/glasses.jpg" alt="">
+                                        <img :src="videoList.videoItem.recommendOtherBackup[3].cover" alt="">
                                         <img src="../../assets/images/play.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title">
-                                    <a href="">原创舞蹈《折柳》</a>
+                                    <a href="">{{videoList.videoItem.recommendOtherBackup[3].title}}</a>
                                 </div>
                                 <div class="moment_detail">
-                                    <svg t="1666175904194" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="7077" width="18" height="16">
-                                        <path
-                                            d="M793.6 972.8l-563.2 0c-113.1008 0-204.8-91.6992-204.8-204.8L25.6 256c0-113.1008 91.6992-204.8 204.8-204.8l563.2 0c113.1008 0 204.8 91.6992 204.8 204.8l0 512C998.4 881.1008 906.7008 972.8 793.6 972.8zM947.2 286.72c0-101.7856-82.5344-184.32-184.32-184.32L261.12 102.4C159.3344 102.4 76.8 184.9344 76.8 286.72l0 450.56c0 101.7856 82.5344 184.32 184.32 184.32l501.76 0c101.7856 0 184.32-82.5344 184.32-184.32L947.2 286.72zM384 308.224l307.2 203.776-307.2 203.776L384 308.224z"
-                                            p-id="7078" fill="#cdcdcd"></path>
-                                    </svg>
+
                                     <span style="display: inline-block; transform: translateY(-1px); margin-left: 4px;">
-                                        2003</span>
+                                        剩余{{videoList.videoItem.recommendOtherBackup[3].inventoryBackup.availableInventory}}个名额</span>
                                 </div>
                             </div>
                         </div>
@@ -487,13 +403,57 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import moment from 'moment'
+import { onBeforeMount, onMounted, reactive, ref, watch } from "vue";
+import { useRoute } from 'vue-router'
+import { useVideoStore } from '@/store/video'
+import _ from 'lodash'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const path = useRoute().fullPath
 let foldToggle = ref(false)
+let video = ref()
+const videoStore = useVideoStore()
 const options = reactive({
-    src: "https://rs.dance365.com/video/be6a906567bc4eaf9a91a797062b6e19_rs_2ecda0ae248a493d877e7dc79f564deal9of.m3u8",
-    type:'m3u8',
-    poster: "https://rs.dance365.com/photo/8b216916-9c9d-471f-983a-b98a77c77c4b.jpg"
+    src: "",
+    type: 'm3u8',
+    poster: ""
 })
+// console.log(path.split('&')[0].split('?')[1].split('=')[1])
+const videoList = reactive({
+    videoItem: {}
+})
+const getVideo = () => {
+    let index = Number(path.split('&')[2].split('=')[1])
+    console.log(index)
+    if (index < 5) {
+        options.src = videoStore.video[index].moreBackup.videos[0].hlsUrl
+        options.poster = videoStore.video[index].moreBackup.videos[0].cover
+        videoList.videoItem = _.cloneDeep(videoStore.video[index])
+    } else {
+        index = index % 5
+        options.src = videoStore.video[index].moreBackup.videos[0].hlsUrl
+        options.poster = videoStore.video[index].moreBackup.videos[0].cover
+        videoList.videoItem = _.cloneDeep(videoStore.video[index])
+    }
+
+}
+onBeforeMount(() => {
+    getVideo()
+})
+const toPlay = (id, index) => {
+    router.push(`/detail/video?momentId=${id}&resourceId=${videoList.videoItem.id}&index=${index}&source=recommend_mine`)
+}
+
+watch(() => router.currentRoute.value.fullPath, (newValue, oldValue) => {
+    console.log(newValue, oldValue)
+    if (oldValue) {
+        if (newValue != oldValue) {
+            location.reload()
+        }
+    }
+}, { immediate: true })
+
 </script>
 
 <style lang="less" scoped>
@@ -760,9 +720,7 @@ const options = reactive({
         }
 
         .folded {
-
             height: 45px;
-            margin: 32px 0 0;
         }
 
         .fold-toggle-container {
@@ -782,7 +740,7 @@ const options = reactive({
         }
 
         .fold {
-            margin-top: -17.6px;
+            margin-top: -32px;
             z-index: 1;
             position: relative;
 

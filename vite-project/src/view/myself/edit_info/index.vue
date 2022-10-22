@@ -14,8 +14,15 @@
     >
       <div class="avatar-container">
         <img
+          v-if="selfData.avatar"
           style="width: 120px; height: 120px; border-radius: 50%"
-          :src="selfData.avatar ? selfData.avatar : '../images/default.png'"
+          :src="selfData.avatar"
+          alt=""
+        />
+        <img
+          v-else
+          style="width: 120px; height: 120px; border-radius: 50%"
+          src="../images/default.png"
           alt=""
         />
       </div>
@@ -30,11 +37,13 @@
         >
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
-              <el-form-item label="用户名:">
+              <el-form-item label="用户名:" class="circle">
                 <el-input
-                  :placeholder="selfData ? selfData.account : ''"
+                  placeholder=""
                   size="large"
-                  v-model="input"
+                  label-width="100px"
+                  v-model="selfData.account"
+                  class="inputHint"
                 />
               </el-form-item>
             </el-col>
@@ -56,7 +65,12 @@
           <el-row :gutter="20">
             <el-col :span="12" :offset="0">
               <el-form-item label="性别:">
-                <el-button type="default" style="width: 70px">男</el-button>
+                <el-button
+                  type="default"
+                  style="width: 70px"
+                  @click="effctColor"
+                  >男</el-button
+                >
                 <el-button type="default" style="width: 70px" size="default"
                   >女</el-button
                 >
@@ -246,14 +260,6 @@ const form = reactive({
 
 const value = ref([])
 
-const props = {
-  expandTrigger: 'hover',
-}
-
-const handleChange = (value) => {
-  console.log(value)
-}
-
 const options = [
   {
     value: 'guide',
@@ -304,8 +310,11 @@ const options = [
 ]
 const selfData = ref({})
 onMounted(() => {
-  getGroupList()
-  getMySelfData()
+  setTimeout(() => {
+    getGroupList()
+    getMySelfData()
+  }, 0)
+  input.value = selfData.value.account
 })
 const getGroupList = async () => {
   let result = await reqGroupType()
@@ -386,5 +395,29 @@ const saveHandler = () => {
   border-radius: 4px;
   background: var(--el-color-primary-light-9);
   color: var(--el-color-primary);
+}
+:deep().circle {
+  position: relative;
+  width: 250px;
+}
+.circle:before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #f93684;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  transform: translateY(250%);
+}
+
+:deep(.inputHint:after) {
+  content: '6/11';
+  font-size: 12px;
+  color: rgb(166, 166, 166);
+  position: absolute;
+  right: 15px;
 }
 </style>
