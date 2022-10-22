@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { reqGetRecommendList, reqGetOriginalList, reqGetCourseList, reqGetSpecialTopicList, reqGetInformationList } from '../api/home/index'
-
+const access_token = 'c494ae44-3adc-48ca-8749-5128a53358d7'
 export const useHomeStore = defineStore('home', {
     state: () => {
         return {
@@ -14,13 +14,14 @@ export const useHomeStore = defineStore('home', {
     actions: {
         async getRecommendList({ column, pageNum, localCache }) {
             let params = {
-                access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
+                access_token,
                 column,
                 pageSize: 20,
                 pageNum,
                 localCache
             }
             let result = await reqGetRecommendList(params)
+            // console.log(result)
             this.recommendcontent = this.recommendcontent.concat(result.content)
             this.originalcontent = []
             this.coursecontent = []
@@ -29,7 +30,7 @@ export const useHomeStore = defineStore('home', {
         },
         async GetOriginalList({ column, pageNum }) {
             let params = {
-                access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
+                access_token,
                 column,
                 pageSize: 20,
                 pageNum,
@@ -44,7 +45,7 @@ export const useHomeStore = defineStore('home', {
         },
         async GetCourseList({ column, pageNum }) {
             let params = {
-                access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
+                access_token,
                 column,
                 pageSize: 20,
                 pageNum,
@@ -59,7 +60,7 @@ export const useHomeStore = defineStore('home', {
         },
         async GetSpecialTopicList({ column, pageNum }) {
             let params = {
-                access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
+                access_token,
                 column,
                 pageSize: 20,
                 pageNum,
@@ -74,7 +75,7 @@ export const useHomeStore = defineStore('home', {
         },
         async GetInformationList({ column, pageNum }) {
             let params = {
-                access_token: 'c494ae44-3adc-48ca-8749-5128a53358d7',
+                access_token,
                 column,
                 pageSize: 20,
                 pageNum,

@@ -1,5 +1,4 @@
 import request from '../../utils/request'
-import requestVideo from '../../utils/requestMock'
 // 推荐
 export const reqGetRecommendList = (params) => request.get('/moment/moments/rec/default', { params })
 // 作品

@@ -20,9 +20,9 @@ request.interceptors.request.use((config: any) => {
 // 添加响应拦截器
 request.interceptors.response.use(
   (response: AxiosResponse<ResponseData<any>>) => {
-    
 
-    return response
+
+    return response.data
   },
   (error) => {
     return Promise.reject(error)

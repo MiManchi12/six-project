@@ -238,6 +238,10 @@ onMounted(() => {
             overflow: hidden;
             cursor: pointer;
 
+            :hover {
+                opacity: .4
+            }
+
             .coverClass {
                 position: absolute;
                 width: 40px;
