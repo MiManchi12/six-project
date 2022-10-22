@@ -194,19 +194,19 @@
                 <!-- 详情 -->
                 <div class="pre-container">
                     <pre class="summary-container"
-                        :class="foldToggle===true?'folded':''">{{videoList.videoItem.summary?videoList.videoItem.summary:videoList.videoItem.title}}</pre>
-                    <div class="fold-toggle-container" :class="foldToggle===true?'fold  ':''">
+                        :class="foldToggle===true?'':'folded'">{{videoList.videoItem.summary?videoList.videoItem.summary:videoList.videoItem.title}}</pre>
+                    <div class="fold-toggle-container" :class="foldToggle===true?'':'fold  '">
                         <div class="linear-gradient-container"></div>
                         <span class="foldToggle" @click="foldToggle=!foldToggle"
                             v-show="videoList.videoItem.summary.split('\n').length > 3&&videoList.videoItem.summary!==null">
-                            {{foldToggle?'展开':'收起'}}
-                            <svg v-show="foldToggle ===true" t="1666202787614" class="icon" viewBox="0 0 1024 1024"
+                            {{foldToggle===false?'展开':'收起'}}
+                            <svg v-show="foldToggle ===false" t="1666202787614" class="icon" viewBox="0 0 1024 1024"
                                 version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9913" width="14" height="14">
                                 <path
                                     d="M512 784.1L210.3 485.2c-22.2-22-58.2-22-80.4 0l-20.1 19.9c-22.2 22-22.2 57.7 0 79.7l340.9 337.7 1 1 20.2 19.9c22.1 22 58.2 22 80.4 0l20.1-19.9 0.4-0.4 341.5-338.3c22.2-22 22.2-57.7 0-79.7l-20.1-19.9c-22.2-22-58.3-22-80.5 0L512 784.1z m0-404.7L210.3 80.5c-22.2-22-58.2-22-80.4 0l-20.1 19.9c-22.2 22-22.2 57.7 0 79.7l340.9 337.7 1 1 20.2 19.9c22.1 22 58.2 22 80.4 0l20.1-19.9 0.4-0.4 341.5-338.3c22.2-22 22.2-57.7 0-79.7l-20.1-19.9c-22.2-22-58.3-22-80.5 0L512 379.4z"
                                     fill="#f93684" p-id="9914"></path>
                             </svg>
-                            <svg v-show="foldToggle ===false" t="1666202671145" class="icon" viewBox="0 0 1024 1024"
+                            <svg v-show="foldToggle ===true" t="1666202671145" class="icon" viewBox="0 0 1024 1024"
                                 version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18766" width="14" height="14">
                                 <path
                                     d="M512 239.9l301.7 298.9c22.2 22 58.2 22 80.4 0l20.1-19.9c22.2-22 22.2-57.7 0-79.7L573.3 101.5l-1-1-20.2-19.9c-22.1-22-58.2-22-80.4 0l-20.1 19.9-0.4 0.4-341.5 338.3c-22.2 22-22.2 57.7 0 79.7l20.1 19.9c22.2 22 58.3 22 80.5 0L512 239.9z m0 404.7l301.7 298.9c22.2 22 58.2 22 80.4 0l20.1-19.9c22.2-22 22.2-57.7 0-79.7L573.3 506.1l-1-1-20.2-19.9c-22.1-22-58.2-22-80.4 0l-20.1 19.9-0.4 0.4-341.5 338.4c-22.2 22-22.2 57.7 0 79.7l20.1 19.9c22.2 22 58.3 22 80.5 0L512 644.6z"

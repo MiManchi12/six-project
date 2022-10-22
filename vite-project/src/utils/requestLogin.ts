@@ -2,7 +2,8 @@ import axios, { type AxiosResponse } from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import pinia from '../store/index';
 import { useUserInfoStore } from '../store/userInfo';
-
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 /* 定义response对象的data接口 */
 interface ResponseData<T> {
@@ -20,7 +21,7 @@ const service = axios.create({
 // 添加请求拦截器
 service.interceptors.request.use(
 	(config: any) => {
-
+		nprogress.start()
 		let token = useUserInfoStore().token
 		if (token) {
 			config.headers['token'] = token
@@ -52,8 +53,10 @@ service.interceptors.response.use(
 					.then(() => { })
 					.catch(() => { })
 			}
+			nprogress.done()
 			return Promise.reject(service.interceptors.response);
 		} else {
+			nprogress.done()
 			return res.data; /* 返回成功响应数据中的data属性数据 */
 		}
 	},
@@ -67,6 +70,7 @@ service.interceptors.response.use(
 			if (error.response.data) ElMessage.error(error.response.statusText);
 			else ElMessage.error('接口路径找不到');
 		}
+		
 		return Promise.reject(error);
 	}
 );
