@@ -18,6 +18,7 @@
     "less-loader": "^11.1.0",
     "mockjs": "^1.1.0",
     "moment": "^2.29.4",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",

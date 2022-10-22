@@ -10,11 +10,21 @@
             </a>
             <!-- 导航列表 -->
             <nav class="headerNav">
-                <router-link to="/home" class="headerNavItem" active-class="active"><span>资源</span></router-link>
-                <router-link to="/class" class="headerNavItem" active-class="active"><span>课程</span></router-link>
-                <router-link to="/train" class="headerNavItem" active-class="active"><span>练习室</span></router-link>
-                <router-link to="/exchange" class="headerNavItem" active-class="active"><span>交流</span></router-link>
-                <router-link to="/myself" class="headerNavItem" active-class="active"><span>我的</span></router-link>
+                <router-link to="" class="headerNavItem" :active-class="Route.path.includes('/home')===true?'active':''"
+                    @click="toHome"><span>资源</span></router-link>
+                <router-link to="" class="headerNavItem"
+                    :active-class="Route.path.includes('/class')===true?'active':''" @click="toClass"><span>课程</span>
+                </router-link>
+                <router-link to="" class="headerNavItem"
+                    :active-class="Route.path.includes('/train')===true?'active':''" @click="toTrain"><span>练习室</span>
+                </router-link>
+                <router-link to="" class="headerNavItem"
+                    :active-class="Route.path.includes('/exchange')===true?'active':''" @click="toExchange">
+                    <span>交流</span>
+                </router-link>
+                <router-link to="" class="headerNavItem"
+                    :active-class="Route.path.includes('/center')===true?'active':''" @click="toMyself"><span>我的</span>
+                </router-link>
             </nav>
             <!-- 右侧导航 -->
             <div class="headerRight">
@@ -83,7 +93,7 @@ const toLogin = () => {
     router.push('/login')
 }
 //退出登录
-const loginOut =  () => {
+const loginOut = () => {
 
     ElMessageBox.confirm(
         "确认退出登录吗？",
@@ -110,6 +120,81 @@ const loginOut =  () => {
 
     // const result = await reqLogout();
 };
+
+const toHome = () => {
+    router.push('/home')
+}
+const toClass = () => {
+    router.push('/class')
+}
+
+const toTrain = () => {
+    if (getToken() != null) {
+        router.push('/train')
+    } else {
+        ElMessageBox.confirm(
+            '请登录后访问，是否前往登录页？',
+            '用户未登录',
+            {
+                confirmButtonText: '前往',
+                cancelButtonText: '取消',
+                type: 'warning',
+                draggable: true,
+            }
+        )
+            .then(() => {
+                router.push('/login')
+            })
+            .catch(() => {
+
+            })
+    }
+}
+const toExchange = () => {
+    if (getToken() != null) {
+        router.push('/exchange')
+    } else {
+        ElMessageBox.confirm(
+            '请登录后访问，是否前往登录页？',
+            '用户未登录',
+            {
+                confirmButtonText: '前往',
+                cancelButtonText: '取消',
+                type: 'warning',
+                draggable: true,
+            }
+        )
+            .then(() => {
+                router.push('/login')
+            })
+            .catch(() => {
+
+            })
+    }
+}
+const toMyself = () => {
+    if (getToken() != null) {
+        router.push('/myself')
+    } else {
+        ElMessageBox.confirm(
+            '请登录后访问，是否前往登录页？',
+            '用户未登录',
+            {
+                confirmButtonText: '前往',
+                cancelButtonText: '取消',
+                type: 'warning',
+                draggable: true,
+            }
+        )
+            .then(() => {
+                router.push('/login')
+            })
+            .catch(() => {
+
+            })
+    }
+}
+
 </script>
 
 <style lang="less" scoped>
@@ -197,7 +282,7 @@ const loginOut =  () => {
         display: inline-block;
         width: 30px;
         height: 30px;
-        background-image:url('@/assets/images/glasses.jpg');
+        background-image: url('@/assets/images/glasses.jpg');
         cursor: pointer;
         // background: #ccc;
         border-radius: 50%;
